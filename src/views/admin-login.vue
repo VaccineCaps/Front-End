@@ -1,4 +1,5 @@
 <template>
+<v-main>
 <v-container class="container" fluid>
   <v-row>
     <!-- login -->
@@ -44,6 +45,7 @@
       </v-col>
   </v-row>
 </v-container>
+</v-main>
 </template>
 
 <script>
@@ -60,5 +62,8 @@ export default {
 </script>
 
 <style>
-  
+  .background {
+    background-image: url(../assets/Frame571.png);
+    background-size: 100%;
+  }
 </style>
