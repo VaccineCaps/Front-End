@@ -26,7 +26,6 @@
                 large 
                 outlined 
                 color="primary"
-                @click="overlay = !overlay" 
                 block>
                 Login
               </v-btn> 
@@ -82,7 +81,7 @@ export default {
       return {
           show1: false,
           password: '',
-          overlay: false,
+          overlay: true,
           zIndex: 0,
           opacity: 0.85,
           
