@@ -1,7 +1,8 @@
 <template>
   <v-main>
-  
-  <h2>gass</h2>
+  <v-btn to="/admin-login">
+    Login Admin
+  </v-btn>
   </v-main>
 </template>
 
