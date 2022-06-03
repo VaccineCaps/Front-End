@@ -3,7 +3,8 @@ import VueRouter from "vue-router";
 import HomePage from "@/views/HomeView.vue";
 import AdminLogin from "@/views/admin-login.vue";
 import SyaratPenggunaan from "@/views/syarat-penggunaan.vue";
-import KebijakanPrvasi from "@/views/kebijakan-privasi.vue"
+import KebijakanPrvasi from "@/views/kebijakan-privasi.vue";
+import MenuProfile from "@/views/profile-menu"
 
 import Vue from "vue";
 
@@ -29,6 +30,11 @@ const routes = [
         path: '/kebijakan-privasi',
         name: 'KebijakanPrivasi',
         component: KebijakanPrvasi
+    },
+    {
+        path: '/profile-menu',
+        name: 'MenuProfile',
+        component: MenuProfile
     }
 ];
 
