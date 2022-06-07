@@ -1,13 +1,12 @@
 <template>
-<v-main>
-<v-container class="container" fluid>
-  <v-row class="row">
-    <!-- login -->
-      <v-col 
-      cols="6" class="my-15">
+  <v-main>
+    <v-container class="container" fluid>
+      <v-row class="row">
+        <!-- login -->
+        <v-col cols="6" class="my-15">
           <h1 class="my-5 text-center">Masuk Admin</h1>
           <v-row>
-            <v-col cols="12" sm=8 class="mx-auto">
+            <v-col cols="12" sm="8" class="mx-auto">
               <v-text-field
                 label="Email"
                 prepend-icon="mdi-gmail"
@@ -18,95 +17,126 @@
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 @click:append="show1 = !show1"
-              ></v-text-field> <br>
+              ></v-text-field>
+              <br />
               <h3 class="text-center">Lupa Password?</h3>
-              <v-btn 
-                class="rounded-lg my-10" 
-                elevation="1" 
-                large 
-                outlined 
+              <v-btn
+                class="rounded-lg my-10"
+                elevation="1"
+                large
+                outlined
                 color="primary"
-                block>
+                block
+              >
                 Login
-              </v-btn> 
-            </v-col>     
-          </v-row> 
-      </v-col>
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-col>
 
-    <!-- Dialog Card -->
-<v-row>
-  <v-col cols="auto">
-    <v-dialog
-        transition="dialog-top-transition"
-        max-width="450"
-        :value="dialog"
-        persistent
-      >
-      <template>
-        <v-card height="auto" width="450" color="white" class="rounded-xl">
-          <v-card height="auto" elevation="10" color="white">
-            <v-card-title class="primary--text">
-              <h4 class="mx-auto"> Syarat Penggunaan dan Kebijakan Privasi </h4>
-            </v-card-title>     
-          </v-card> <br>
-          <v-card-subtitle>
-            <h2 class="primary--text">I-Vaksin telah mengeluarkan Syarat Penggunaan dan Kebijakan Privasi</h2>
-          </v-card-subtitle>
-          <v-card-text class="black--text">
-            Syarat Penggunaan dan Kebijakan Privasi adalah sebuah ketentuan yang wajib dikuti dan disetujua oleh Pengguna I-Vaksin sebelum menggunakan aplikasi I-Vaksin
-          </v-card-text>
-          <v-card-text class="black--text">
-            Lihat Syarat Penggunaan dan kebijakan Privasi disini:
-          </v-card-text>
-          <v-col cols="10" class="mx-auto">
-         <v-btn class="rounded-xl" color="primary" block to="/syarat-penggunaan">Syarat Pengunaan</v-btn> <br>
-            <v-btn class="rounded-xl" color="primary" block to="/kebijakan-privasi">Kebijakan Privasi</v-btn>
-          </v-col> <br>
-          <v-card-text class="black--text">
-            Dengan menyatakan "Setuju", maka Anda menerima segala isi Syarat Penggunaan dan Kebijakan Privasi yang berlaku
-          </v-card-text>
-          <v-col cols="10" class="mx-auto">
-            <v-btn x-large color="primary" block @click="dialog = false">Setuju</v-btn> <br>
+        <!-- Dialog Card -->
+        <v-row>
+          <v-col cols="auto">
+            <v-dialog
+              transition="dialog-top-transition"
+              max-width="450"
+              :value="dialog"
+              persistent
+            >
+              <template>
+                <v-card
+                  height="auto"
+                  width="450"
+                  color="white"
+                  class="rounded-xl"
+                >
+                  <v-card height="auto" elevation="10" color="white">
+                    <v-card-title class="primary--text">
+                      <h4 class="mx-auto">
+                        Syarat Penggunaan dan Kebijakan Privasi
+                      </h4>
+                    </v-card-title>
+                  </v-card>
+                  <br />
+                  <v-card-subtitle>
+                    <h2 class="primary--text">
+                      I-Vaksin telah mengeluarkan Syarat Penggunaan dan
+                      Kebijakan Privasi
+                    </h2>
+                  </v-card-subtitle>
+                  <v-card-text class="black--text">
+                    Syarat Penggunaan dan Kebijakan Privasi adalah sebuah
+                    ketentuan yang wajib dikuti dan disetujua oleh Pengguna
+                    I-Vaksin sebelum menggunakan aplikasi I-Vaksin
+                  </v-card-text>
+                  <v-card-text class="black--text">
+                    Lihat Syarat Penggunaan dan kebijakan Privasi disini:
+                  </v-card-text>
+                  <v-col cols="10" class="mx-auto">
+                    <v-btn
+                      class="rounded-xl"
+                      color="primary"
+                      block
+                      to="/syarat-penggunaan"
+                      >Syarat Pengunaan</v-btn
+                    >
+                    <br />
+                    <v-btn
+                      class="rounded-xl"
+                      color="primary"
+                      block
+                      to="/kebijakan-privasi"
+                      >Kebijakan Privasi</v-btn
+                    >
+                  </v-col>
+                  <br />
+                  <v-card-text class="black--text">
+                    Dengan menyatakan "Setuju", maka Anda menerima segala isi
+                    Syarat Penggunaan dan Kebijakan Privasi yang berlaku
+                  </v-card-text>
+                  <v-col cols="10" class="mx-auto">
+                    <v-btn x-large color="primary" block @click="dialog = false"
+                      >Setuju</v-btn
+                    >
+                    <br />
+                  </v-col>
+                </v-card>
+              </template>
+            </v-dialog>
           </v-col>
-        </v-card>
-      </template>
-    </v-dialog>
-  </v-col>
-</v-row>
-    <!-- Picture -->
-      <v-col cols="6" class="background">
-      </v-col>
-  </v-row>
-</v-container>
-</v-main>
+        </v-row>
+        <!-- Picture -->
+        <v-col cols="6" class="background"> </v-col>
+      </v-row>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
 export default {
-    name: 'AdminLogin',
-    
-    data (){
-      return {
-          show1: false,
-          password: '',
-          dialog: true,
-          zIndex: 0,
-          opacity: 0.85,
-          
-      }
-    }
-}
+  name: "AdminLogin",
+
+  data() {
+    return {
+      show1: false,
+      password: "",
+      dialog: true,
+      zIndex: 0,
+      opacity: 0.85,
+    };
+  },
+};
 </script>
 
 <style>
-  .background {
-    background-image: url(../assets/Frame571.png);
-    background-size: 100%;
-  }
-  .row {
-    height: 458px; 
-  }
-  .row-card {
-    height: 25px;
-  }
+.background {
+  background-image: url(../assets/Frame571.png);
+  background-size: 100%;
+}
+.row {
+  height: 458px;
+}
+.row-card {
+  height: 25px;
+}
 </style>

@@ -1,70 +1,121 @@
 <template>
-    <v-main>
-        <v-toolbar class=" toolbar rounded-lg" elevation="3" color="light-blue lighten-5">
-            <h2>Profile Menu</h2>
-        </v-toolbar> <hr>
-        <v-app-bar dark color="transparent" elevation="3" height="200">
-           <div class="mx-auto">
-                <v-btn
-                    class="mx-5 my-3"
-                    outlined
-                    large
-                    fab
-                    color="indigo">      
-                <v-avatar>
-                    <v-img src="../assets/logo.png"></v-img>
-                </v-avatar>
-            </v-btn>
-            <h3 class="black--text text-center">Super Admin</h3>
-            </div>    
-        </v-app-bar> <hr>
-        <v-container>
-            <v-card elevation="0"> 
-                <v-list>
-                    <template>
-                    <v-list-item-group
-                        color="primary">
-                            <v-list-item>Daftar Super Admin</v-list-item> <hr class="line"> 
-                            <v-list-item>Tentang I-Vaksin</v-list-item> <hr class="line">
-                            <v-list-item>Maintenance</v-list-item> <hr class="line">
-                            <v-list-item>Bahasa</v-list-item> <hr class="line"> 
-                            <v-list-item>Logout</v-list-item> <hr class="line">
-                    </v-list-item-group>
-                    </template>
-                </v-list>
-            </v-card>
-            
-            
-            
-            
-        </v-container>
+  <v-main>
+    <v-toolbar
+      class="toolbar rounded-lg"
+      elevation="3"
+      color="light-blue lighten-5"
+    >
+      <h2>Profile Menu</h2>
+    </v-toolbar>
+    <hr />
+    <v-app-bar dark color="transparent" elevation="3" height="200">
+      <div class="mx-auto">
+        <v-btn class="mx-5 my-3" outlined large fab color="indigo">
+          <v-avatar>
+            <v-img src="../assets/logo.png"></v-img>
+          </v-avatar>
+        </v-btn>
+        <h3 class="black--text text-center">Super Admin</h3>
+      </div>
+    </v-app-bar>
+    <hr />
+    <v-container>
+      <v-card elevation="0">
+        <v-list>
+          <template>
+            <v-list-item-group color="primary">
+              <v-list-item>Daftar Super Admin</v-list-item>
+              <hr class="line" />
+              <v-list-item @click="dialog = true">Tentang I-Vaksin</v-list-item>
+              <hr class="line" />
+              <v-dialog
+                transition="dialog-top-transition"
+                max-width="500"
+                :value="dialog"
+                class="rounded-xl"
+                persistent
+              >
+                <template>
+                  <v-card
+                    height="auto"
+                    width="500"
+                    color="white"
+                    class="rounded-xl"
+                  >
+                    <v-card height="auto" elevation="5" color="white">
+                      <v-card-title class="primary--text">
+                        <h3 class="mx-auto">Tentang I-VAKSIN</h3>
+                      </v-card-title>
+                    </v-card>
+                    <v-card-title class="title primary--text">
+                      <h4>I-VAKSIN</h4>
+                    </v-card-title>
+                    <v-card-subtitle>
+                      <p>
+                        Merupakan sebuah aplikasi yang berfungsi sebagai media
+                        registrasi vaksinasi bagi seluruh masyarakat umum dengan
+                        beberapa fitur seperti berita terkini terkait virus yang
+                        menyebar dan artikel kesehatan lainnya
+                      </p>
+                      <p>
+                        Aplikasi ini diluncurkan pada tahun 2021 guna membantu
+                        mobilitas para petugas kesehatan dalam menangani
+                        vaksinasi nasional
+                      </p>
 
-    </v-main>
+                      <v-btn
+                        class="mx-auto"
+                        x-large
+                        color="primary"
+                        block
+                        @click="dialog = false"
+                        >Kembali</v-btn
+                      >
+                      <br />
+                    </v-card-subtitle>
+                  </v-card>
+                </template>
+              </v-dialog>
+              <v-list-item>Maintenance</v-list-item>
+              <hr class="line" />
+              <v-list-item>Bahasa</v-list-item>
+              <hr class="line" />
+              <v-list-item>Logout</v-list-item>
+              <hr class="line" />
+            </v-list-item-group>
+          </template>
+        </v-list>
+      </v-card>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
-    export default {
-        name: 'ProfilePage',
-        data () {
-      return {
-        desserts: [
-            {name: 'Daftar Super Admin'},
-            {name: 'Tentang I-Vaksin'},
-            {name: 'Maintenance'},
-            {name: 'Bahasa',},
-            {name: 'Logout'}, 
-                ],
-          
-        };
-                }
-    }
+export default {
+  name: "ProfilePage",
+  data() {
+    return {
+      dialog: false,
+      desserts: [
+        { name: "Daftar Super Admin" },
+        { name: "Tentang I-Vaksin" },
+        { name: "Maintenance" },
+        { name: "Bahasa" },
+        { name: "Logout" },
+      ],
+    };
+  },
+};
 </script>
 
 <style>
-    .toolbar{
-        margin-bottom: 10px;
-    }
-    .line {
-        border-style: ridge;
-    }
+.toolbar {
+  margin-bottom: 10px;
+}
+.line {
+  border-style: ridge;
+}
+.title {
+  margin-bottom: 20px;
+}
 </style>
