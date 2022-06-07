@@ -1,7 +1,7 @@
 import VueRouter from "vue-router";
 
 import HomePage from "@/views/HomeView.vue";
-import AdminLogin from "@/views/admin-login.vue";
+import DataRegistrasi from "@/views/DataRegistrasi.vue";
 
 import Vue from "vue";
 
@@ -14,9 +14,9 @@ const routes = [
         component: HomePage
     },
     {
-        path: "/admin-login",
-        name: "AdminLogin",
-        component: AdminLogin 
+        path: "/DataRegistrasi",
+        name: "DataRegistrasi",
+        component: DataRegistrasi
     }
 ];
 
