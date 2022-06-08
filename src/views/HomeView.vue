@@ -1,7 +1,7 @@
 <template>
   <v-main>
-  <v-btn to="/admin-login">
-    Login Admin
+  <v-btn to="/DataRegistrasi">
+    REGISTER
   </v-btn>
   </v-main>
 </template>
