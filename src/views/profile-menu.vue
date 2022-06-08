@@ -1,10 +1,6 @@
 <template>
   <v-main>
-    <v-toolbar
-      class="toolbar rounded-lg"
-      elevation="3"
-      color="light-blue lighten-5"
-    >
+    <v-toolbar class="toolbar rounded-lg" elevation="3">
       <h2>Profile Menu</h2>
     </v-toolbar>
     <hr />
