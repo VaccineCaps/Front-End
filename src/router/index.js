@@ -2,7 +2,7 @@ import VueRouter from "vue-router";
 
 import HomePage from "@/views/HomeView.vue";
 import DataRegistrasi from "@/views/DataRegistrasi.vue";
-
+//  terserah
 import Vue from "vue";
 
 Vue.use(VueRouter);

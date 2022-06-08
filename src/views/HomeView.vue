@@ -1,7 +1,7 @@
 <template>
   <v-main>
   <v-btn to="/DataRegistrasi">
-    DATA REGISTER
+    REGISTER
   </v-btn>
   </v-main>
 </template>
