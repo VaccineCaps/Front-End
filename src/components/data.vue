@@ -4,7 +4,7 @@
       <v-simple-table class="">
         <template v-slot:default>
           <thead>
-            <tr class="primary">
+            <tr class="header">
               <th class="text-left">No.</th>
               <th class="text-left">Nama Lengkap</th>
               <th class="text-left">NIK</th>
@@ -90,5 +90,9 @@ export default {
 <style>
 .pagination {
   background: rgb(119, 213, 253);
+}
+
+.header {
+  background: rgba(23, 137, 188, 1);
 }
 </style>
