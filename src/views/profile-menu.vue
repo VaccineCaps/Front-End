@@ -1,17 +1,22 @@
 <template>
   <v-main>
-    <v-toolbar class="toolbar rounded-lg" elevation="3">
+    <v-app-bar id="bar" class="rounded-lg" elevation="3">
       <h2>Profile Menu</h2>
-    </v-toolbar>
+    </v-app-bar>
     <hr />
     <v-app-bar dark color="transparent" elevation="3" height="200">
       <div class="mx-auto">
-        <v-btn class="mx-5 my-3" outlined large fab color="indigo">
-          <v-avatar>
-            <v-img src="../assets/logo.png"></v-img>
-          </v-avatar>
+        <div>
+          <v-btn class="mx-11 my-3" outlined large fab color="indigo">
+            <v-avatar>
+              <v-img src="../assets/logo.png"></v-img>
+            </v-avatar>
+          </v-btn>
+        </div>
+
+        <v-btn text color="transparent">
+          <h3 class="black--text text-center">Super Admin</h3>
         </v-btn>
-        <h3 class="black--text text-center">Super Admin</h3>
       </div>
     </v-app-bar>
     <hr />
@@ -20,9 +25,17 @@
         <v-list>
           <template>
             <v-list-item-group color="primary">
-              <v-list-item>Daftar Super Admin</v-list-item>
+              <v-list-item
+                ><h3 class="font-weight-medium">
+                  Daftar Super Admin
+                </h3></v-list-item
+              >
               <hr class="line" />
-              <v-list-item @click="dialog = true">Tentang I-Vaksin</v-list-item>
+              <v-list-item @click="dialog = true"
+                ><h3 class="font-weight-medium">
+                  Tentang I-Vaksin
+                </h3></v-list-item
+              >
               <hr class="line" />
               <v-dialog
                 transition="dialog-top-transition"
@@ -72,11 +85,17 @@
                   </v-card>
                 </template>
               </v-dialog>
-              <v-list-item>Maintenance</v-list-item>
+              <v-list-item>
+                <h3 class="font-weight-medium">Maintenance</h3></v-list-item
+              >
               <hr class="line" />
-              <v-list-item>Bahasa</v-list-item>
+              <v-list-item
+                ><h3 class="font-weight-medium">Bahasa</h3></v-list-item
+              >
               <hr class="line" />
-              <v-list-item>Logout</v-list-item>
+              <v-list-item
+                ><h3 class="font-weight-medium">Logout</h3></v-list-item
+              >
               <hr class="line" />
             </v-list-item-group>
           </template>
@@ -105,13 +124,15 @@ export default {
 </script>
 
 <style>
-.toolbar {
-  margin-bottom: 10px;
-}
 .line {
-  border-style: ridge;
+  border-bottom-width: 3px;
+  border-color: rgba(163, 163, 163, 0.158);
 }
 .title {
   margin-bottom: 20px;
+}
+#bar {
+  background-color: rgba(34, 155, 216, 1);
+  margin-bottom: 10px;
 }
 </style>
