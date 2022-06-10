@@ -1,9 +1,10 @@
+import Vue from "vue";
 import VueRouter from "vue-router";
-
 import HomePage from "@/views/HomeView.vue";
 import AdminLogin from "@/views/admin-login.vue";
-
-import Vue from "vue";
+import verification from "@/views/verification.vue";
+import sessions from "@/views/vaksinasiSession.vue";
+import addSessions from "@/views/createVaksinasiSession.vue";
 
 Vue.use(VueRouter);
 
@@ -17,7 +18,22 @@ const routes = [
         path: "/admin-login",
         name: "AdminLogin",
         component: AdminLogin 
-    }
+    },
+    {
+        path: "/verification",
+        name: "verification",
+        component: verification,
+    },
+    {
+        path: "/sessions",
+        name: "sessions",
+        component: sessions,        
+    },
+    {
+        path: "/addsessions",
+        name: "addsessions",
+        component: addSessions,
+    },
 ];
 
 const router = new VueRouter({
