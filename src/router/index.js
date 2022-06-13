@@ -1,11 +1,15 @@
 import VueRouter from "vue-router";
 
 import HomePage from "@/views/HomeView.vue";
-import AdminLogin from "@/views/admin-login.vue";
+import layout from "@/layouts/indexLay.vue";
+
 import SyaratPenggunaan from "@/views/syarat-penggunaan.vue";
 import KebijakanPrvasi from "@/views/kebijakan-privasi.vue";
-import MenuProfile from "@/views/profile-menu";
-import stokVaksin from "@/views/stok-vaksin";
+
+import stokVaksin from "@/views/Stok/stok-vaksin";
+import laporanBaru from "../views/Stok/laporan-baru";
+import VaksinKeluar from "../views/Stok/vaksin-keluar";
+import VaksinMasuk from "../views/Stok/vaksin-masuk";
 
 import Vue from "vue";
 
@@ -18,29 +22,62 @@ const routes = [
     component: HomePage,
   },
   {
-    path: "/admin-login",
+    path: "/admin",
     name: "AdminLogin",
-    component: AdminLogin,
-  },
-  {
-    path: "/syarat-penggunaan",
-    name: "SyaratPenggunaan",
-    component: SyaratPenggunaan,
-  },
-  {
-    path: "/kebijakan-privasi",
-    name: "KebijakanPrivasi",
-    component: KebijakanPrvasi,
-  },
-  {
-    path: "/profile-menu",
-    name: "MenuProfile",
-    component: MenuProfile,
-  },
-  {
-    path: "/up-coming",
-    name: "StokVaksin",
-    component: stokVaksin,
+    component: layout,
+    children: [
+      {
+        path: "",
+        name: "",
+        component: () => import("../views/admin-login.vue"),
+      },
+      {
+        path: "kebijakan-privasi",
+        name: "KebijakanPrivasi",
+        component: KebijakanPrvasi,
+      },
+      {
+        path: "syarat-penggunaan",
+        name: "SyaratPenggunaan",
+        component: SyaratPenggunaan,
+      },
+      {
+        path: "profile-menu",
+        name: "MenuProfile",
+        component: () => import("@/views/profile-menu"),
+      },
+      {
+        path: "stok-vaksin",
+        name: "StokVaksin",
+        component: layout,
+        children: [
+          {
+            path: "",
+            name: "",
+            component: stokVaksin,
+          },
+          {
+            path: "laporan-baru",
+            component: layout,
+            children: [
+              {
+                path: "",
+                name: "",
+                component: laporanBaru,
+              },
+              {
+                path: "registrasi-vaksin-keluar",
+                component: VaksinKeluar,
+              },
+              {
+                path: "registrasi-vaksin-masuk",
+                component: VaksinMasuk,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
 ];
 

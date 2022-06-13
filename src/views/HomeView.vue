@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <v-btn to="/admin-login"> Login Admin </v-btn>
+    <v-btn to="/admin"> Login Admin </v-btn>
   </v-main>
 </template>
 

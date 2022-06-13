@@ -1,7 +1,30 @@
 <template>
-  <v-main
-    ><v-card width="auto" outlined color="primary" elevation="1">
-      <v-simple-table>
+  <v-main>
+    <h3 class="font-weight-Reguler">Riwayat Vaksin Masuk</h3>
+    <v-row class="justify-space-between">
+      <v-col cols="6">
+        <div class="d-flex my-2">
+          <p class="my-2 mx-2">Filter</p>
+          <v-btn outlined color="primary">
+            Semua <v-icon color="black" size="15"> mdi-chevron-down </v-icon>
+          </v-btn>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <v-text-field
+          append-icon="mdi-magnify"
+          dense
+          class="rounded-xl"
+          placeholder=" Masukkan hal yang ingin dicari"
+          outlined
+          color="primary"
+          x-small
+        >
+        </v-text-field>
+      </v-col>
+    </v-row>
+    <v-card width="auto" outlined color="primary" elevation="1">
+      <v-simple-table :search="search">
         <template v-slot:default>
           <thead class="primary">
             <tr>
@@ -49,6 +72,7 @@ export default {
   data() {
     return {
       page: 1,
+      search: "",
       desserts: [
         {
           nama: "Rumah Sakit",

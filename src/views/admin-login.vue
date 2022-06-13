@@ -1,6 +1,6 @@
 <template>
-  <v-main>
-    <v-container class="containers" fluid>
+  <v-main class="containers">
+    <v-container fluid height="500">
       <!-- login -->
       <div class="test">
         <h1 class="my-5 text-center white--text tulisan">Masuk</h1>
@@ -121,7 +121,7 @@
                     class="rounded-xl"
                     color="primary"
                     block
-                    to="/syarat-penggunaan"
+                    to="admin/syarat-penggunaan"
                     >Syarat Pengunaan</v-btn
                   >
                   <br />
@@ -129,7 +129,7 @@
                     class="rounded-xl"
                     color="primary"
                     block
-                    to="/kebijakan-privasi"
+                    to="admin/kebijakan-privasi"
                     >Kebijakan Privasi</v-btn
                   >
                 </v-col>
@@ -178,7 +178,7 @@ export default {
       val &&
         setTimeout(() => {
           this.overlay = false;
-          return this.$router.push("/up-coming");
+          return this.$router.push("/admin/profile-menu");
         }, 3000);
     },
   },
@@ -202,6 +202,7 @@ export default {
 }
 .test {
   margin-top: 55px;
+  margin-bottom: 140px;
 }
 .cards {
   background-image: url(../assets/overlay.jpg);

@@ -21,7 +21,7 @@
     </v-app-bar>
     <hr />
     <v-container>
-      <v-card elevation="0">
+      <v-card elevation="0" width="auto">
         <v-list>
           <template>
             <v-list-item-group color="primary">
@@ -41,6 +41,7 @@
                 transition="dialog-top-transition"
                 max-width="500"
                 :value="dialog"
+                :opacity="opacity"
                 class="rounded-xl"
                 persistent
               >
@@ -96,7 +97,6 @@
               <v-list-item
                 ><h3 class="font-weight-medium">Logout</h3></v-list-item
               >
-              <hr class="line" />
             </v-list-item-group>
           </template>
         </v-list>
@@ -111,6 +111,7 @@ export default {
   data() {
     return {
       dialog: false,
+      opacity: 0.2,
       desserts: [
         { name: "Daftar Super Admin" },
         { name: "Tentang I-Vaksin" },
@@ -125,8 +126,8 @@ export default {
 
 <style>
 .line {
-  border-bottom-width: 3px;
-  border-color: rgba(163, 163, 163, 0.158);
+  border-bottom-width: 2px;
+  border-color: rgba(0, 0, 0, 0.274);
 }
 .title {
   margin-bottom: 20px;
