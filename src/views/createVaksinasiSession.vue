@@ -8,7 +8,7 @@
         <v-toolbar color="transparent" elevation="0">
           <v-btn color="transparent" text icon width="100%" height="100%">
             <v-icon large color="black">mdi-plus-circle-outline</v-icon>
-            <h2 class="fontss font-weight-medium mx-3">Buat Sesi Baru</h2>
+              <h2 class="fontss font-weight-medium mx-3">Buat Sesi Baru</h2>
           </v-btn>
         </v-toolbar>
       </div>
@@ -19,27 +19,80 @@
 
     <h2>Sesi Vaksinasi Baru</h2>
     <p>Silahkan mengisi data-data yang tercantum dibawah ini.</p>
-    
+    <v-col>
+      <v-row>
+      <v-col cols="6" style="height:0px;">
     <div>
         <v-card-actions>Rumah Sakit</v-card-actions>
-        <v-text-field solo label="Masukkan Nama Rumah Sakit" style="border-radius:10px;"></v-text-field>
+        <v-text-field dense solo label="Masukkan Nama Rumah Sakit" style="border-radius:10px;"></v-text-field>
     </div>
     <div>
         <v-card-actions>Sesi</v-card-actions>
-        <v-text-field solo label="Masukkan sesi" style="border-radius:10px;"></v-text-field>
+        <v-text-field dense solo label="Masukkan sesi" style="border-radius:10px;"></v-text-field>
     </div>
     <div>
-        <v-card-actions>Tanggal</v-card-actions>
-        <v-text-field solo label="Pilih Tanggal" style="border-radius:10px;"></v-text-field>
+         <div>
+    <div class="mb-6">Pilih Tanggal: <code>{{ activePicker || '' }}</code></div>
+    <v-menu
+      ref="menu"
+      v-model="menu"
+      :close-on-content-click="false"
+      transition="scale-transition"
+      offset-y
+      min-width="auto"
+      style="background-color:white;"
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-text-field
+          v-model="date"
+          label="Pilih Tanggal"
+          
+          readonly
+          v-bind="attrs"
+          v-on="on"
+          style="background-color:white;
+          border-radius:15px;"
+        ></v-text-field>
+      </template>
+      <v-date-picker
+        v-model="date"
+        :active-picker.sync="activePicker"
+        :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)"
+        min="1950-01-01"
+        @change="save"
+      ></v-date-picker>
+    </v-menu>
+  </div>
     </div>
     <div>
         <v-card-actions>Jenis Vaksin</v-card-actions>
-        <v-text-field solo label="Masukkan Jenis Vaksin " style="border-radius:10px;"></v-text-field>
+        <v-text-field dense solo label="Masukkan Jenis Vaksin " style="border-radius:10px;"></v-text-field>
     </div>
     <div>
         <v-card-actions>Jumlah Vaksin</v-card-actions>
-        <v-text-field solo label="Masukkan Jumlah Vaksin" style="border-radius:10px;"></v-text-field>
+        <v-text-field dense solo label="Masukkan Jumlah Vaksin" style="border-radius:10px;"></v-text-field>
     </div>
+    </v-col>
+    
+     <v-col cols="6">
+      <br/>
+      <br/>
+        
+      
+      <v-img src="../assets/mbakvaksin.jpg" style=" height: 450px;"></v-img>
+      </v-col>
+
+    </v-row>
+    </v-col>
+    
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
     <v-row >
     <v-col class="text-center" cols="12">
 
@@ -52,17 +105,27 @@
     </v-container>
 </v-app>
 
+
 </template>
-        
-    
-
-           
-
-    
 
 <script>
 export default {
     name:"createVaksinasiSessionPage",
+    data: () => ({
+      activePicker: null,
+      date: null,
+      menu: false,
+    }),
+    watch: {
+      menu (val) {
+        val && setTimeout(() => (this.activePicker = 'YEAR'))
+      },
+    },
+    methods: {
+      save (date) {
+        this.$refs.menu.save(date)
+      },
+    },
 }
 </script>
 
@@ -77,3 +140,9 @@ export default {
   color: rgb(27, 27, 27);
 }
 </style>
+        
+    
+
+           
+
+    

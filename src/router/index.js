@@ -5,6 +5,7 @@ import AdminLogin from "@/views/admin-login.vue";
 import verification from "@/views/verification.vue";
 import sessions from "@/views/vaksinasiSession.vue";
 import addSessions from "@/views/createVaksinasiSession.vue";
+import preview from "@/views/previewSesiVaksin.vue";
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,11 @@ const routes = [
         path: "/addsessions",
         name: "addsessions",
         component: addSessions,
+    },
+    {
+        path: "/preview",
+        name: "preview",
+        component: preview,
     },
 ];
 
