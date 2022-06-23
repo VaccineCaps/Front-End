@@ -17,7 +17,6 @@
           class="rounded-xl"
           placeholder=" Masukkan hal yang ingin dicari"
           outlined
-          color="primary"
           x-small
         >
         </v-text-field>

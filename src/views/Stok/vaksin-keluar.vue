@@ -14,6 +14,8 @@
               Nama Rumah Sakit
             </body>
             <v-text-field
+              outlined
+              dense
               solo
               label="Masukkan Nama Rumah Sakit"
               class="fields"
@@ -22,6 +24,8 @@
               Nomor Transaksi
             </body>
             <v-text-field
+              outlined
+              dense
               solo
               label="Masukkan Nomor Transaksi"
               class="fields"
@@ -30,6 +34,8 @@
               Tanggal Pengiriman
             </body>
             <v-text-field
+              outlined
+              dense
               solo
               label="Masukkan Tanggal Pengiriman"
               class="fields"
@@ -38,6 +44,8 @@
               Distributor
             </body>
             <v-text-field
+              outlined
+              dense
               solo
               label="Masukkan Distributor"
               class="fields"
@@ -46,6 +54,8 @@
               Email
             </body>
             <v-text-field
+              outlined
+              dense
               solo
               label="Masukkan Email"
               class="fields"
@@ -57,6 +67,8 @@
               Jenis Vaksin
             </body>
             <v-text-field
+              outlined
+              dense
               solo
               label="Masukkan Jenis Vaksin"
               class="fields"
@@ -65,6 +77,8 @@
               Jumlah
             </body>
             <v-text-field
+              outlined
+              dense
               solo
               label="Masukkan Jumlah Vaksin"
               class="fields"
