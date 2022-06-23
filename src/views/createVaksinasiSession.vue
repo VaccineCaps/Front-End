@@ -16,19 +16,26 @@
       <br />
 
 <!-- Form Sessions Page -->
+<v-col class="text-center" cols="12">
 
-    <h2>Sesi Vaksinasi Baru</h2>
+  <h2>Sesi Vaksinasi Baru</h2>
     <p>Silahkan mengisi data-data yang tercantum dibawah ini.</p>
+</v-col>
     <v-col>
       <v-row>
-      <v-col cols="6" style="height:0px;">
+        <v-col cols="1">
+
+        </v-col>
+
+      <v-col cols="10" style="height:0px;">
+    <v-card elevation="10" class="mx-3">
     <div>
         <v-card-actions>Rumah Sakit</v-card-actions>
-        <v-text-field dense solo label="Masukkan Nama Rumah Sakit" style="border-radius:10px;"></v-text-field>
+        <v-text-field dense solo label="Masukkan Nama Rumah Sakit" style="border-radius:5px;"></v-text-field>
     </div>
     <div>
         <v-card-actions>Sesi</v-card-actions>
-        <v-text-field dense solo label="Masukkan sesi" style="border-radius:10px;"></v-text-field>
+        <v-text-field dense solo label="Masukkan sesi" style="border-radius:5px;"></v-text-field>
     </div>
     <div>
          <div>
@@ -51,7 +58,7 @@
           v-bind="attrs"
           v-on="on"
           style="background-color:white;
-          border-radius:15px;"
+          border-radius:5px;"
         ></v-text-field>
       </template>
       <v-date-picker
@@ -66,44 +73,35 @@
     </div>
     <div>
         <v-card-actions>Jenis Vaksin</v-card-actions>
-        <v-text-field dense solo label="Masukkan Jenis Vaksin " style="border-radius:10px;"></v-text-field>
+        <v-text-field dense solo label="Masukkan Jenis Vaksin " style="border-radius:5px;"></v-text-field>
     </div>
     <div>
         <v-card-actions>Jumlah Vaksin</v-card-actions>
-        <v-text-field dense solo label="Masukkan Jumlah Vaksin" style="border-radius:10px;"></v-text-field>
+        <v-text-field dense solo label="Masukkan Jumlah Vaksin" style="border-radius:5px;"></v-text-field>
     </div>
-    </v-col>
-    
-     <v-col cols="6">
-      <br/>
-      <br/>
-        
-      
-      <v-img src="../assets/mbakvaksin.jpg" style=" height: 450px;"></v-img>
-      </v-col>
+    <br/>
+    <br/>
+  
 
-    </v-row>
-    </v-col>
-    
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-
-    <v-row >
     <v-col class="text-center" cols="12">
 
         
-        <v-btn  style="background: linear-gradient(#FFFFFF, #CDF0FF); color:#1789BC; border:ridge #1789BC; margin-left: 0px;">Lanjutkan</v-btn>
+        <v-btn @click="() => GoTo('/preview')"  style="color:#1789BC; border:ridge #1789BC; margin-left: 0px;">Lanjutkan</v-btn>
       
     </v-col>
-    </v-row>    
+    </v-card>
+    </v-col>
     
+     <v-col cols="1">
+        </v-col>
+
+    </v-row>
+    </v-col>
     </v-container>
 </v-app>
+
+    
+    
 
 
 </template>
@@ -125,6 +123,9 @@ export default {
       save (date) {
         this.$refs.menu.save(date)
       },
+      GoTo(){
+        this.$router.push('/preview')
+      }
     },
 }
 </script>
@@ -144,5 +145,8 @@ export default {
     
 
            
+
+
+    
 
     
