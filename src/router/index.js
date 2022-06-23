@@ -1,13 +1,29 @@
+import Vue from "vue";
 import VueRouter from "vue-router";
-
 import HomePage from "@/views/HomeView.vue";
 import DataRegistrasi from "@/views/DataRegistrasi.vue";
+import MediaBerita from "@/views/MediaBerita.vue";
 //  terserah
-import Vue from "vue";
+
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/",
+    name: "HomePage",
+    component: HomePage,
+  },
+  {
+    path: "/DataRegister",
+    name: "DataRegistrasi",
+    component: DataRegistrasi,
+  },
+  {
+    path: "/MediaBerita",
+    name: "MediaBerita",
+    component: MediaBerita,
+  },
     {
         path: "/",
         name: "HomePage",
@@ -19,11 +35,10 @@ const routes = [
         component: DataRegistrasi
     }
 ];
-
 const router = new VueRouter({
-    mode: "history",
-    base: "/",
-    routes,
+  mode: "history",
+  base: "/",
+  routes,
 });
 
 export default router;
