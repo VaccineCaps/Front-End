@@ -1,13 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomePage from "@/views/HomeView.vue";
-<<<<<<< HEAD
+
 import AdminLogin from "@/views/admin-login.vue";
+
 import verification from "@/views/verification.vue";
 import sessions from "@/views/vaksinasiSession.vue";
 import addSessions from "@/views/createVaksinasiSession.vue";
 import preview from "@/views/previewSesiVaksin.vue";
-=======
+
 import layout from "@/layouts/indexLay.vue";
 
 import SyaratPenggunaan from "@/views/syarat-penggunaan.vue";
@@ -18,49 +19,58 @@ import laporanBaru from "../views/Stok/laporan-baru";
 import VaksinKeluar from "../views/Stok/vaksin-keluar";
 import VaksinMasuk from "../views/Stok/vaksin-masuk";
 
+import MainmenuAdmin from "@/views/Mainmenu-admin.vue";
+import MenuBannerIklan from "@/views/MenuBannerIklan.vue";
+
 import Vue from "vue";
->>>>>>> dzikri
 
 Vue.use(VueRouter);
 
 const routes = [
-<<<<<<< HEAD
-    {
-        path: "/",
-        name: "HomePage",
-        component: HomePage
-    },
-    {
-        path: "/admin-login",
-        name: "AdminLogin",
-        component: AdminLogin 
-    },
-    {
-        path: "/verification",
-        name: "verification",
-        component: verification,
-    },
-    {
-        path: "/sessions",
-        name: "sessions",
-        component: sessions,        
-    },
-    {
-        path: "/addsessions",
-        name: "addsessions",
-        component: addSessions,
-    },
-    {
-        path: "/preview",
-        name: "preview",
-        component: preview,
-    },
-=======
   {
     path: "/",
     name: "HomePage",
     component: HomePage,
   },
+  {
+    path: "/admin-login",
+    name: "AdminLogin",
+    component: AdminLogin,
+  },
+  // RAJA
+  {
+    path: "/verification",
+    name: "verification",
+    component: verification,
+  },
+  {
+    path: "/sessions",
+    name: "sessions",
+    component: sessions,
+  },
+  {
+    path: "/addsessions",
+    name: "addsessions",
+    component: addSessions,
+  },
+  {
+    path: "/preview",
+    name: "preview",
+    component: preview,
+  },
+  // Bang Taris
+  {
+    path: "/mainmenu-admin",
+    name: "/MainmenuAdmin",
+    component: MainmenuAdmin,
+  },
+  {
+    path: "/menubanner-iklan",
+    name: "/MenuBannerIklan",
+    component: MenuBannerIklan,
+  },
+
+  // zikri
   {
     path: "/admin",
     name: "AdminLogin",
@@ -119,7 +129,6 @@ const routes = [
       },
     ],
   },
->>>>>>> dzikri
 ];
 
 const router = new VueRouter({
