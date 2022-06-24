@@ -63,7 +63,7 @@ export default {
   name: "VaccineStok",
   methods: {
     goTo() {
-      return this.$router.push("/admin/stok-vaksin/laporan-baru");
+      return this.$router.push("/stok-vaksin/laporan-baru");
     },
   },
   data() {

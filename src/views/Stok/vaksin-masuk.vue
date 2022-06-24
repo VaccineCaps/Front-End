@@ -5,167 +5,150 @@
     </v-app-bar>
     <v-container fluid>
       <div class="mx-10">
-        <h1 class="font-weight-regular">Registrasi Vaksin Masuk</h1>
-        <p>Silahkan mengisi data-data yang tercantum dibawah ini :</p>
+        <h1 class="font-weight-regular text-center">Registrasi Vaksin Masuk</h1>
+        <p class="text-center">
+          Silahkan mengisi data-data yang tercantum dibawah ini :
+        </p>
 
-        <v-row>
-          <v-col cols="5">
-            <body>
+        <v-card width="1000" height="auto" class="mx-auto" elevation="10">
+          <v-container fluid>
+            <body class="body font-weight-bold">
+              Mitra
+            </body>
+            <hr class="garis" />
+
+            <body class="body">
               Nama Mitra
             </body>
-            <v-dialog ref="dialog" v-model="modals" persistent width="290px">
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  v-model="gassList"
-                  v-bind="attrs"
-                  v-on="on"
-                  outlined
-                  solo
-                  dense
-                  class="fields"
-                  :error-messages="selectErrors"
-                  label="Item"
-                  required
-                  @change="$v.select.$touch()"
-                  @blur="$v.select.$touch()"
-                ></v-text-field>
-              </template>
-              <v-card>
-                <v-card-title>Select Country</v-card-title>
-                <v-divider></v-divider>
-                <v-card-text style="height: 300px">
-                  <v-radio-group column v-model="input">
-                    <v-radio label="Bahamas, The" value="bahamass"></v-radio>
-                    <v-radio label="Bahamas, The" value="bahamasa"></v-radio>
-                    <v-radio label="Bahamas, The" value="bahamasd"></v-radio>
-                    <v-radio label="Bahamas, The" value="bahamasw"></v-radio>
-                  </v-radio-group>
-                </v-card-text>
-                <v-divider></v-divider>
-                <v-card-actions>
-                  <v-btn color="blue darken-1" text @click="dialog = false">
-                    Close
-                  </v-btn>
-                  <v-btn color="blue darken-1" text @click="inputList">
-                    Save
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
-
-            <body>
+            <v-text-field
+              outlined
+              dense
+              solo
+              label="Masukkan Nama Mitra"
+              class="fields"
+            ></v-text-field>
+            <body class="body">
               Nomor Transaksi
             </body>
             <v-text-field
               outlined
               dense
               solo
-              placeholder="Masukkan Nomor Transaksi"
+              label="Masukkan Nomor Transaksi"
               class="fields"
             ></v-text-field>
-            <body>
+            <body class="body">
               Tanggal Pengiriman
             </body>
-            <v-dialog
-              ref="dialog"
-              v-model="modal"
-              :return-value.sync="date"
-              persistent
-              width="290px"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field
-                  outlined
-                  dense
-                  solo
-                  class="fields"
-                  v-model="date"
-                  placeholder="Masukkan Tanggal Pengiriman"
-                  v-bind="attrs"
-                  v-on="on"
-                ></v-text-field>
-              </template>
-              <v-date-picker
-                v-model="date"
-                no-title
-                @input="menu1 = false"
-                scrollable
-              >
-                <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="modal = false">
-                  Cancel
-                </v-btn>
-                <v-btn text color="primary" @click="$refs.dialog.save(date)">
-                  OK
-                </v-btn>
-              </v-date-picker>
-            </v-dialog>
-
-            <body>
+            <v-text-field
+              outlined
+              dense
+              solo
+              label="Masukkan Tanggal Pengiriman"
+              class="fields"
+            ></v-text-field>
+            <body class="body">
               Asal Vaksin
             </body>
             <v-text-field
               outlined
               dense
               solo
-              placeholder="Masukkan Distributor"
+              label="Masukkan Asal Vaksin"
               class="fields"
             ></v-text-field>
-            <body>
+            <body class="body">
               Tujuan
             </body>
             <v-text-field
               outlined
               dense
               solo
-              placeholder="Masukkan Tujuan"
+              label="Masukkan Tujuan"
               class="fields"
             ></v-text-field>
-            <body>
-              E-mail
+
+            <body class="body">
+              Email
             </body>
             <v-text-field
               outlined
               dense
               solo
-              placeholder="Masukkan Email"
+              label="Masukkan Email"
               class="fields"
             ></v-text-field>
-          </v-col>
-          <v-col></v-col>
-          <v-col cols="5">
-            <body>
-              Jenis Vaksin
+            <body class="body">
+              Jenis
             </body>
             <v-text-field
               outlined
               dense
               solo
-              placeholder="Masukkan Jenis Vaksin"
+              label="Masukkan Jenis Vaksin"
               class="fields"
             ></v-text-field>
-            <body>
+            <body class="body">
               Jumlah
             </body>
             <v-text-field
               outlined
               dense
               solo
-              placeholder="Masukkan Jumlah Vaksin"
+              label="Masukkan Jumlah Vaksin"
               class="fields"
             ></v-text-field>
-            <br />
             <v-row>
-              <v-col cols="2"></v-col>
-              <v-col cols="8">
-                <v-btn x-large block outlined color="primary" class="fields"
+              <v-col></v-col>
+              <v-col>
+                <v-btn
+                  x-large
+                  block
+                  outlined
+                  color="primary"
+                  class="fields"
+                  @click="dialog = true"
                   >Lanjut</v-btn
-                ></v-col
+                >
+              </v-col>
+              <!-- dialog -->
+              <v-dialog
+                persistent
+                v-model="dialog"
+                width="650"
+                :value="dialog"
+                class="rounded-xl"
               >
-              <v-col cols="2"></v-col>
+                <v-card
+                  elevation="0"
+                  height="auto"
+                  class="text-center flex-column rounded-xl"
+                  style="border: solid #1789bc"
+                >
+                  <h2 class="apakah texts font-weight-light">
+                    Apakah data yang anda masukkan sudah benar?
+                  </h2>
+                  <v-divider class="bold"></v-divider>
+                  <v-toolbar elevation="0">
+                    <v-col cols="6">
+                      <v-btn x-large text block>
+                        <h4 class="texts font-weight-light">Ya</h4>
+                      </v-btn>
+                    </v-col>
+                    <v-divider vertical class="bold"></v-divider>
+                    <v-col cols="6">
+                      <v-btn x-large text block @click="dialog = false">
+                        <h4 class="texts font-weight-light">Tidak</h4>
+                      </v-btn>
+                    </v-col>
+                  </v-toolbar>
+                </v-card>
+              </v-dialog>
+
+              <v-col></v-col>
             </v-row>
-          </v-col>
-        </v-row>
+          </v-container>
+        </v-card>
       </div>
     </v-container>
   </v-main>
@@ -173,37 +156,37 @@
 
 <script>
 export default {
-  data: () => ({
-    modal: false,
-    gass: false,
-    dialogm1: "",
-    dialog: false,
-    items: null,
-    itemss: [
-      "Item 1",
-      "Item 2",
-      "Item 3",
-      "Item 4",
-      "Item 5",
-      "Item 6",
-      "Item 7",
-      "Item 8",
-    ],
-  }),
-  methods: {
-    inputList() {
-      this.input.push(this.gassList);
-    },
+  data() {
+    return {
+      dialog: false,
+    };
   },
 };
 </script>
 
 <style>
+.apakah {
+  padding-bottom: 50px;
+  padding-top: 75px;
+}
 p {
   color: rgba(0, 0, 0, 0.493);
 }
-
+.body {
+  margin-left: 10px;
+}
 .fields {
   border-radius: 10px;
+}
+.garis {
+  border-color: rgba(0, 0, 0, 0.356);
+  border-width: 1px;
+  margin-bottom: 12px;
+}
+.bold {
+  border-width: 1px;
+}
+.texts {
+  color: #1789bc;
 }
 </style>

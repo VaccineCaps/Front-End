@@ -178,7 +178,7 @@ export default {
       val &&
         setTimeout(() => {
           this.overlay = false;
-          return this.$router.push("/admin/profile-menu");
+          return this.$router.push("/main-menu");
         }, 3000);
     },
   },

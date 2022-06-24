@@ -1,21 +1,21 @@
 <template>
   <v-main>
     <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
-      <h2 class="white--text font-weight-medium">Stok Vaksin</h2>
+      <h2 class="white--text font-weight-medium">Media dan Artikel</h2>
     </v-app-bar>
     <v-container fluid>
       <v-app-bar
+        @click="() => redirect()"
         id="app-bars"
         height="100"
         width="1250"
         class="mx-auto rounded-lg"
         elevation="3"
-        @click="() => redirect()"
       >
         <v-row>
           <v-col cols="11"
             ><h2 class="black--text font-weight-medium">
-              Registrasi Vaksin Masuk
+              Menu Banner Iklan
             </h2></v-col
           >
           <v-col cols="1" class="text-end my-2">
@@ -35,7 +35,7 @@
         <v-row>
           <v-col cols="11"
             ><h2 class="black--text font-weight-medium">
-              Registrasi Vaksin Keluar
+              Menu Berita dan Artikel
             </h2></v-col
           >
           <v-col cols="1" class="text-end my-2">
@@ -49,17 +49,13 @@
 
 <script>
 export default {
-  name: "LaporanBaru",
+  name: "MediaBerita",
   methods: {
-    pushPage() {
-      return this.$router.push(
-        "/stok-vaksin/laporan-baru/registrasi-vaksin-keluar"
-      );
-    },
+    // pushPage() {
+    //   return this.$router.push("/Menu Berita dan Artikel");
+    // },
     redirect() {
-      return this.$router.push(
-        "/stok-vaksin/laporan-baru/registrasi-vaksin-masuk"
-      );
+      return this.$router.push("/media-dan-artikel/menu-banner-iklan");
     },
   },
 };
@@ -71,5 +67,8 @@ export default {
 }
 #app-bar {
   background-color: rgba(180, 241, 255, 1);
+}
+#bar {
+  background-color: rgba(34, 155, 216, 1);
 }
 </style>
