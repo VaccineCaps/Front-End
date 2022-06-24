@@ -10,8 +10,8 @@
     >
       Pembuatan Sesi Vaksinasi
     </h1>
-    <v-container>
       <!-- Form Sessions Page -->
+    <v-container style="height: 800px;">
       <v-col class="text-center" cols="12">
         <h2>Sesi Vaksinasi Baru</h2>
         <p>Silahkan mengisi data-data yang tercantum dibawah ini.</p>
@@ -21,26 +21,26 @@
           <v-col cols="1"> </v-col>
 
           <v-col cols="10" style="height: 0px">
-            <v-card elevation="10" class="mx-3">
-              <div>
-                <v-card-actions>Rumah Sakit</v-card-actions>
-                <v-text-field
-                  dense
-                  solo
-                  label="Masukkan Nama Rumah Sakit"
-                  style="border-radius: 5px"
-                ></v-text-field>
-              </div>
-              <div>
-                <v-card-actions>Sesi</v-card-actions>
-                <v-text-field
-                  dense
-                  solo
-                  label="Masukkan sesi"
-                  style="border-radius: 5px"
-                ></v-text-field>
-              </div>
-              <div>
+            <v-card elevation="10" class="mx-auto" width="1000" height="auto">
+            <v-container fluid>
+            <body class="body font-weight-bold">
+              Rumah Sakit
+            </body>
+            <hr class="garis" />
+             <body class="body">
+              Rumah Sakit
+            </body>
+             <body class="body">
+              Sesi
+            </body>
+            <v-text-field
+              outlined
+              dense
+              solo
+              label="Masukkan Sesi Vaksinasi"
+              class="fields"
+            ></v-text-field>
+            <div>
                 <div>
                   <div class="mb-6">
                     Pilih Tanggal: <code>{{ activePicker || "" }}</code>
@@ -61,7 +61,11 @@
                         readonly
                         v-bind="attrs"
                         v-on="on"
-                        style="background-color: white; border-radius: 5px"
+                        class="fields"
+                        outlined
+                        dense
+                        solo
+                        style="background-color: white; border-radius: 10px"
                       ></v-text-field>
                     </template>
                     <v-date-picker
@@ -80,38 +84,79 @@
                   </v-menu>
                 </div>
               </div>
-              <div>
-                <v-card-actions>Jenis Vaksin</v-card-actions>
-                <v-text-field
-                  dense
-                  solo
-                  label="Masukkan Jenis Vaksin "
-                  style="border-radius: 5px"
-                ></v-text-field>
-              </div>
-              <div>
-                <v-card-actions>Jumlah Vaksin</v-card-actions>
-                <v-text-field
-                  dense
-                  solo
-                  label="Masukkan Jumlah Vaksin"
-                  style="border-radius: 5px"
-                ></v-text-field>
-              </div>
-              <br />
-              <br />
-
-              <v-col class="text-center" cols="12">
+               <body class="body">
+              Jenis Vaksin
+            </body>
+            <v-text-field
+              outlined
+              dense
+              solo
+              label="Masukkan Jenis vaksin"
+              class="fields"
+            ></v-text-field>
+             <body class="body">
+              Jumlah Vaksin
+            </body>
+            <v-text-field
+              outlined
+              dense
+              solo
+              label="Masukkan Jumlah vaksin"
+              class="fields"
+            ></v-text-field>
+            <v-row>
+              <v-col></v-col>
+              <v-col>
                 <v-btn
-                  @click="() => GoTo('/preview')"
-                  style="
-                    color: #1789bc;
-                    border: ridge #1789bc;
-                    margin-left: 0px;
-                  "
-                  >Lanjutkan</v-btn
+                  x-large
+                  block
+                  outlined
+                  color="primary"
+                  class="fields"
+                  @click="dialog = true"
+                  >Lanjut</v-btn
                 >
               </v-col>
+              <!-- dialog -->
+              <v-dialog
+                persistent
+                v-model="dialog"
+                width="650"
+                :value="dialog"
+                class="rounded-xl"
+              >
+                <v-card
+                  elevation="0"
+                  height="auto"
+                  class="text-center flex-column rounded-xl"
+                  style="border: solid #1789bc"
+                >
+                  <h2 class="apakah texts font-weight-light">
+                    Apakah data yang anda masukkan sudah benar?
+                  </h2>
+                  <v-divider class="bold"></v-divider>
+                  <v-toolbar elevation="0">
+                    <v-col cols="6">
+                      <v-btn x-large text block>
+                        <h4 class="texts font-weight-light">Ya</h4>
+                      </v-btn>
+                    </v-col>
+                    <v-divider vertical class="bold"></v-divider>
+                    <v-col cols="6">
+                      <v-btn x-large text block @click="dialog = false">
+                        <h4 class="texts font-weight-light">Tidak</h4>
+                      </v-btn>
+                    </v-col>
+                  </v-toolbar>
+                </v-card>
+              </v-dialog>
+
+              <v-col></v-col>
+            </v-row>
+            </v-container>  
+              
+            
+             
             </v-card>
           </v-col>
 
