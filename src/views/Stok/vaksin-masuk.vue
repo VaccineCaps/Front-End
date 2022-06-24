@@ -40,13 +40,37 @@
             <body class="body">
               Tanggal Pengiriman
             </body>
-            <v-text-field
-              outlined
-              dense
-              solo
-              label="Masukkan Tanggal Pengiriman"
-              class="fields"
-            ></v-text-field>
+            <v-dialog
+              ref="dialog"
+              v-model="modal"
+              :return-value.sync="date"
+              persistent
+              width="290px"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  class="fields"
+                  outlined
+                  dense
+                  solo
+                  v-model="date"
+                  label="Masukkan Tanggal Pengiriman"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker v-model="date" scrollable>
+                <v-spacer></v-spacer>
+                <v-btn text color="primary" @click="modal = false">
+                  Cancel
+                </v-btn>
+                <v-btn text color="primary" @click="$refs.dialog.save(date)">
+                  OK
+                </v-btn>
+              </v-date-picker>
+            </v-dialog>
+
             <body class="body">
               Asal Vaksin
             </body>
