@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import verification from "@/views/PembuatanVaksin/verification.vue";
+import succes from "@/views/PembuatanVaksin/successAddSesessions.vue";
 import sessions from "@/views/PembuatanVaksin/vaksinasiSession.vue";
 import addSessions from "@/views/PembuatanVaksin/createVaksinasiSession.vue";
 import preview from "@/views/previewSesiVaksin.vue";
@@ -102,9 +102,9 @@ const routes = [
             component: addSessions,
           },
           {
-            path: "verification",
-            name: "verification",
-            component: verification,
+            path: "succes",
+            name: "succes",
+            component: succes,
           },
 
           {
