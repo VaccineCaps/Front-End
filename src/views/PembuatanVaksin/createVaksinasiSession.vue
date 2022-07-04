@@ -137,7 +137,7 @@
                   <v-divider class="bold"></v-divider>
                   <v-toolbar elevation="0">
                     <v-col cols="6">
-                      <v-btn x-large text block>
+                      <v-btn @click="()=>GoTo('/sessions')" x-large text block>
                         <h4 class="texts font-weight-light">Ya</h4>
                       </v-btn>
                     </v-col>
@@ -171,11 +171,12 @@
 export default {
   name: "createVaksinasiSessionPage",
   data: () => ({
+    dialog:false,
     activePicker: null,
     date: null,
     menu: false,
   }),
-  watch: {
+   watch: {
     menu(val) {
       val && setTimeout(() => (this.activePicker = "YEAR"));
     },
@@ -185,7 +186,10 @@ export default {
       this.$refs.menu.save(date);
     },
     GoTo() {
-      this.$router.push("/preview");
+     return this.$router.push("/sessions");
+    },
+    GoToBack() {
+      this.$router.push("/sessions");
     },
   },
 };
