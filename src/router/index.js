@@ -5,6 +5,8 @@ import AdminLogin from "@/views/admin-login.vue";
 import MainmenuAdmin from "@/views/Mainmenu-admin.vue";
 import MenuBannerIklan from "@/views/MenuBannerIklan.vue";
 import MenuBeritaArtikel from "@/views/MenuBeritaArtikel.vue";
+import CrudMediaArtikel from "@/views/CrudMediaArtikel.vue";
+
 
 import Vue from "vue";
 
@@ -35,6 +37,11 @@ const routes = [
         path: "/menuberita-artikel",
         name: "/MenuBeritaArtikel",
         component :  MenuBeritaArtikel
+    },
+    {
+        path: "/crud-mediaartikel",
+        name: "/CrudMediaArtikel",
+        component :  CrudMediaArtikel
     },
 
 ];
