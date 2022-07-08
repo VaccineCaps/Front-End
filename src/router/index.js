@@ -4,6 +4,7 @@ import HomePage from "@/views/HomeView.vue";
 import AdminLogin from "@/views/admin-login.vue";
 import MainmenuAdmin from "@/views/Mainmenu-admin.vue";
 import MenuBannerIklan from "@/views/MenuBannerIklan.vue";
+import MenuBeritaArtikel from "@/views/MenuBeritaArtikel.vue";
 
 import Vue from "vue";
 
@@ -29,7 +30,12 @@ const routes = [
         path: "/menubanner-iklan",
         name: "/MenuBannerIklan",
         component :  MenuBannerIklan
-    }
+    },
+    {
+        path: "/menuberita-artikel",
+        name: "/MenuBeritaArtikel",
+        component :  MenuBeritaArtikel
+    },
 
 ];
 
