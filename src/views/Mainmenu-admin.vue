@@ -67,7 +67,7 @@
               flat
               to="/sessions"
             >
-              <v-card-title>Pembuatan Sesi Vaksinasi</v-card-title>
+              <v-card-title @click="()=> toGo()">Pembuatan Sesi Vaksinasi</v-card-title>
               <v-card-text
                 >Pembuatan jadwal vaksinasi mulai dari sesi, tempat, dan
                 lokasi</v-card-text
@@ -117,6 +117,9 @@ export default {
     pushTo() {
       return this.$router.push("/profile-menu");
     },
+    // toGo(){
+    //   return this.$router.push("/Mainmenu-admin /sessions");
+    // }
   },
 };
 </script>

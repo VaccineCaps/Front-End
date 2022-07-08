@@ -58,7 +58,7 @@ const routes = [
       {
         path: "stok-vaksin",
         name: "StokVaksin",
-        component: layout,
+        component: stokVaksin,
         children: [
           {
             path: "",
@@ -67,7 +67,7 @@ const routes = [
           },
           {
             path: "laporan-baru",
-            component: layout,
+            component: laporanBaru,
             children: [
               {
                 path: "",
@@ -89,7 +89,7 @@ const routes = [
       {
         path: "sessions",
         name: "sessions",
-        component: layout,
+        component: sessions,
         children: [
           {
             path: "",
@@ -117,7 +117,7 @@ const routes = [
 
       {
         path: "media-dan-artikel",
-        component: layout,
+        component: MediaArtikel,
         children: [
           {
             path: "",
@@ -133,7 +133,7 @@ const routes = [
       },
       {
         path: "data-pendaftaran-vaksinasi",
-        component: layout,
+        component: DataRegis,
         children: [
           {
             path: "",
