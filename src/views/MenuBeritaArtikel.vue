@@ -10,6 +10,7 @@
           <h2>Judul Artikel</h2>
 
           <v-text-field
+          v-model="judulArtikel"
             outlined
             label="Masukkan Judul Artikel"
             :rules="JudulRules"
@@ -22,6 +23,7 @@
         <v-col>
           <h2>Isi Artikel</h2>
           <v-textarea
+          v-model="isiArtikel"
             outlined
             name="input-7-4"
             label="Ketik Berita Disini"
@@ -35,7 +37,8 @@
         <v-layout justify-center>
           <v-btn depressed color="primary" x-large class="mr-3">Kembali</v-btn>
 
-          <v-btn outlined depressed color="primary" x-large>Lanjut</v-btn>
+          <v-btn outlined depressed color="primary" x-large
+          @click="submit">Save</v-btn>
         </v-layout>
       </div>
     </v-card>
@@ -46,10 +49,21 @@
 export default {
   data() {
     return {
+      judulArtikel: '',
+      isiArtikel: '',
+      
       JudulRules: [(v) => v.length <= 49 || "Maksimal 50 Karakter"],
       ArtikelRules: [(v) => v.length <= 999 || "Maksimal 1000 Karakter"],
     };
   },
+
+  methods: {
+    submit() {
+      console.log(this.judulArtikel, this.isiArtikel)
+      this.judulArtikel = '';
+      this.isiArtikel = '';
+    },
+  }
 };
 </script>
 

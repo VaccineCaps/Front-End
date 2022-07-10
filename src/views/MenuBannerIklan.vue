@@ -7,7 +7,7 @@
     <v-card class="rounded-xl pa-10 ma-10">
       <v-layout wrap justify-space-around>
         <v-flex xs12 md5>
-          <v-title class="text-center"><h1>PREVIEW</h1></v-title>
+          <h1 class="text-center">PREVIEW</h1>
           <v-img
             :src="url"
             height="400"
@@ -39,7 +39,7 @@
 
       <v-layout justify-center class="mt-10">
         <v-btn depressed color="primary" x-large class="mr-3">Kembali</v-btn>
-        <v-btn outlined depressed color="primary" x-large>Lanjut</v-btn>
+        <v-btn outlined depressed color="primary" x-large @click="submit">Save</v-btn>
       </v-layout>
     </v-card>
   </v-main>
@@ -56,6 +56,10 @@ export default {
   methods: {
     Preview_image() {
       this.url = URL.createObjectURL(this.image);
+    },
+
+    submit() {
+      console.log(this.image)
     },
   },
 };
