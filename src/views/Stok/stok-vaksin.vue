@@ -1,6 +1,9 @@
 <template>
   <v-main class="main">
-    <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
+    <v-row>
+      <v-col cols="3"></v-col>
+      <v-col cols="9">
+        <v-app-bar id="bar" elevation="3" max-width="1500">
       <h2 class="white--text font-weight-medium">Stok Vaksin</h2>
     </v-app-bar>
     <v-container fluid>
@@ -53,6 +56,9 @@
 
       <Keluar />
     </v-container>
+      </v-col>
+    </v-row>
+    
   </v-main>
 </template>
 
@@ -122,5 +128,9 @@ export default {
 }
 #bar {
   background-color: rgba(34, 155, 216, 1);
+  margin-left: -105px;
+}
+.container{
+  margin-left: -50px
 }
 </style>

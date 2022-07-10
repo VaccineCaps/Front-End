@@ -22,9 +22,28 @@ import MenuBannerIklan from "@/views/Media/MenuBannerIklan.vue";
 import MediaArtikel from "@/views/Media/media-dan-berita.vue";
 import DataRegis from "@/views/DataPendaftaran/DataRegistrasi.vue";
 
+
+
+import Test from "@/views/test.vue"
+// import Teslogin from "@/views/tes-login"
+
+
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/test-login", 
+    component: {
+      default:()=> import("@/views/tes-login"),
+      // sideBar:()=> import("@/components/tes-side-bar.vue")
+    } 
+  },
+  
+  {
+    path:"/test-api",
+    name: "ApiLogin",
+    component: Test,  
+  },
   {
     path: "/",
     name: "AdminLogin",
@@ -47,7 +66,7 @@ const routes = [
       },
       {
         path: "/main-menu",
-        name: "/MainmenuAdmin",
+        name: "MainmenuAdmin",
         component: MainmenuAdmin,
       },
       {
@@ -145,11 +164,7 @@ const routes = [
     ],
   },
 
-  // RAJA
-
-  // Bang Taris
-
-  // zikri
+ 
 ];
 
 const router = new VueRouter({
