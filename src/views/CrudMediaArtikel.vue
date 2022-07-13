@@ -90,7 +90,7 @@ export default {
 
       headersBerita: [
         { text: "No", value: "no", width: 100 },
-        { text: "Judul", value: "banner" },
+        { text: "Judul", value: "judul" },
         { text: "Keterangan", value: "keterangan", width: 750 },
         { text: "Action", value: "action", sortable: false },
       ],
@@ -107,20 +107,20 @@ export default {
         },
         {
           no: "3",
-          keterangan: "Iklan 2",
+          keterangan: "Iklan 3",
         },
       ],
 
       dessertsBerita: [
         {
           no: "1",
-          Judul: "Bagaimana cara kerja vaksin?",
+          judul: "Bagaimana cara kerja vaksin?",
           keterangan:
             "begitu tubuh memproduksi antibodi dalam respons utamanya terhadap suatu antigen, tubuh juga...",
         },
         {
           no: "2",
-          Judul: "Tentang vaksin Sinovac",
+          judul: "Tentang vaksin Sinovac",
           keterangan:
             "Vaksin Sinovac adlaah vaksin untuk mencgah infeksi virus SARS-Cov-2 atau COVID-19. Vaksin Sinovac dikenal juga dengan nama CoronaVacine...",
         },

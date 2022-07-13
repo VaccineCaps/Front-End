@@ -5,27 +5,14 @@
     </v-app-bar>
 
     <v-card class="rounded-xl pa-10 ma-10">
-      <v-layout wrap justify-space-around>
-        <v-flex xs12 md5>
-          <h1 class="text-center">PREVIEW</h1>
-          <v-img
-            :src="url"
-            height="400"
-            contain
-            class="rounded-xl grey"
-          ></v-img>
-        </v-flex>
 
-        <v-flex xs12 md5>
-          <h1><br /></h1>
-          <!-- <v-icon large color="black"> mdi-upload </v-icon> -->
+      <v-col xs="12" md="6">
+        <h2>Upload Banner</h2>
           <v-file-input
-            class="rounded-xl"
-            height="400"
             v-model="image"
             accept=".png, .jpeg, .jpg"
             hint="File extentions (.png, .jpg, .jpeg) File Size limits (max: 10mb)"
-            placeholder="Upload profile image"
+            placeholder="Upload profile image ( format jpg ukuran 1280 x 252 )"
             prepend-icon=""
             outlined
             filled
@@ -34,13 +21,23 @@
             @change="Preview_image"
           >
           </v-file-input>
-        </v-flex>
-      </v-layout>
+      </v-col>
+
+      <v-col>
+        <h2>Preview</h2>
+          <v-img
+            :src="url"
+            height="500"
+            contain
+            class="rounded grey"
+          ></v-img>
+      </v-col>
 
       <v-layout justify-center class="mt-10">
         <v-btn depressed color="primary" x-large class="mr-3">Kembali</v-btn>
         <v-btn outlined depressed color="primary" x-large @click="submit">Save</v-btn>
       </v-layout>
+
     </v-card>
   </v-main>
 </template>

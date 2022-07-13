@@ -10,7 +10,7 @@
           <h2>Judul Artikel</h2>
 
           <v-text-field
-          v-model="judulArtikel"
+            v-model="judulArtikel"
             outlined
             label="Masukkan Judul Artikel"
             :rules="JudulRules"
@@ -23,22 +23,23 @@
         <v-col>
           <h2>Isi Artikel</h2>
           <v-textarea
-          v-model="isiArtikel"
+            v-model="isiArtikel"
             outlined
             name="input-7-4"
             label="Ketik Berita Disini"
             :rules="ArtikelRules"
-            height="450"
+            height="500"
             counter
-            maxlength="1000"
+            maxlength="3000"
           ></v-textarea>
         </v-col>
 
         <v-layout justify-center>
           <v-btn depressed color="primary" x-large class="mr-3">Kembali</v-btn>
 
-          <v-btn outlined depressed color="primary" x-large
-          @click="submit">Save</v-btn>
+          <v-btn outlined depressed color="primary" x-large @click="submit"
+            >Save</v-btn
+          >
         </v-layout>
       </div>
     </v-card>
@@ -49,21 +50,21 @@
 export default {
   data() {
     return {
-      judulArtikel: '',
-      isiArtikel: '',
-      
+      judulArtikel: "",
+      isiArtikel: "",
+
       JudulRules: [(v) => v.length <= 49 || "Maksimal 50 Karakter"],
-      ArtikelRules: [(v) => v.length <= 999 || "Maksimal 1000 Karakter"],
+      ArtikelRules: [(v) => v.length <= 2999 || "Maksimal 3000 Karakter"],
     };
   },
 
   methods: {
     submit() {
-      console.log(this.judulArtikel, this.isiArtikel)
-      this.judulArtikel = '';
-      this.isiArtikel = '';
+      console.log(this.judulArtikel, this.isiArtikel);
+      this.judulArtikel = "";
+      this.isiArtikel = "";
     },
-  }
+  },
 };
 </script>
 
