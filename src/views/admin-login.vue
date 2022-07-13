@@ -22,9 +22,6 @@
                 ></v-text-field>
                 <div class="d-flex justify-end">
                   <div></div>
-                  <v-btn text color="transparent">
-                    <h5 class="text-end black--text">Lupa Password?</h5>
-                  </v-btn>
                 </div>
 
                 <v-btn
@@ -167,7 +164,7 @@ export default {
     return {
       show1: false,
       password: "",
-      dialog: true,
+      dialog: false,
       zIndex: 0,
       opacity: 0.5,
       overlay: false,
@@ -178,7 +175,7 @@ export default {
       val &&
         setTimeout(() => {
           this.overlay = false;
-          return this.$router.push("/main-menu");
+          return this.$router.push("/");
         }, 3000);
     },
   },

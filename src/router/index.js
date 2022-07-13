@@ -7,6 +7,7 @@ import addSessions from "@/views/PembuatanVaksin/createVaksinasiSession.vue";
 import preview from "@/views/previewSesiVaksin.vue";
 
 import layout from "@/layouts/indexLay.vue";
+import layout2 from "@/layouts/indexLay2.vue";
 
 import SyaratPenggunaan from "@/views/syarat-penggunaan.vue";
 import KebijakanPrvasi from "@/views/kebijakan-privasi.vue";
@@ -16,7 +17,6 @@ import laporanBaru from "../views/Stok/laporan-baru";
 import VaksinKeluar from "../views/Stok/vaksin-keluar";
 import VaksinMasuk from "../views/Stok/vaksin-masuk";
 
-import MainmenuAdmin from "@/views/Mainmenu-admin.vue";
 import MenuBannerIklan from "@/views/Media/MenuBannerIklan.vue";
 
 import MediaArtikel from "@/views/Media/media-dan-berita.vue";
@@ -26,63 +26,36 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "AdminLogin",
+    path: "",
+    name: "Dashboard",
     component: layout,
     children: [
       {
-        path: "",
+        path: "/",
         name: "",
-        component: () => import("../views/admin-login.vue"),
-      },
-      {
-        path: "kebijakan-privasi",
-        name: "KebijakanPrivasi",
-        component: KebijakanPrvasi,
-      },
-      {
-        path: "syarat-penggunaan",
-        name: "SyaratPenggunaan",
-        component: SyaratPenggunaan,
-      },
-      {
-        path: "/main-menu",
-        name: "/MainmenuAdmin",
-        component: MainmenuAdmin,
-      },
-      {
-        path: "profile-menu",
-        name: "MenuProfile",
-        component: () => import("@/views/profile-menu"),
+        component: DataRegis,
       },
       {
         path: "stok-vaksin",
         name: "StokVaksin",
-        component: stokVaksin,
+        component: stokVaksin,       
+      },
+      {
+        path: "laporan-baru",
+        component: laporanBaru,
         children: [
           {
             path: "",
             name: "",
-            component: stokVaksin,
+            component: laporanBaru,
           },
           {
-            path: "laporan-baru",
-            component: laporanBaru,
-            children: [
-              {
-                path: "",
-                name: "",
-                component: laporanBaru,
-              },
-              {
-                path: "registrasi-vaksin-keluar",
-                component: VaksinKeluar,
-              },
-              {
-                path: "registrasi-vaksin-masuk",
-                component: VaksinMasuk,
-              },
-            ],
+            path: "registrasi-vaksin-keluar",
+            component: VaksinKeluar,
+          },
+          {
+            path: "registrasi-vaksin-masuk",
+            component: VaksinMasuk,
           },
         ],
       },
@@ -114,10 +87,9 @@ const routes = [
           },
         ],
       },
-
       {
         path: "media-dan-artikel",
-        component: MediaArtikel,
+        component: layout,
         children: [
           {
             path: "",
@@ -131,17 +103,39 @@ const routes = [
           },
         ],
       },
+      
+    ],
+  },
+      
+  {
+    path: "/login",
+    name: "AdminLogin",
+    component: layout2,
+    children: [
       {
-        path: "data-pendaftaran-vaksinasi",
-        component: DataRegis,
-        children: [
-          {
-            path: "",
-            name: "",
-            component: DataRegis,
-          },
-        ],
+        path: "",
+        name: "",
+        component: () => import("../views/admin-login.vue"),
       },
+      {
+        path: "kebijakan-privasi",
+        name: "KebijakanPrivasi",
+        component: KebijakanPrvasi,
+      },
+      {
+        path: "syarat-penggunaan",
+        name: "SyaratPenggunaan",
+        component: SyaratPenggunaan,
+      },
+      {
+        path: "profile-menu",
+        name: "MenuProfile",
+        component: () => import("@/views/profile-menu"),
+      },
+    
+     
+
+     
     ],
   },
 
@@ -154,7 +148,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: "history",
-  base: "/admin",
+  base: "/",
   routes,
 });
 

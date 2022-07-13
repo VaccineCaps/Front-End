@@ -30,6 +30,15 @@
              <body class="body">
               Rumah Sakit
             </body>
+        <v-select
+          :items="items"
+          label="Pilih Rumah Sakit"
+          outlined
+          solo
+          dense
+          style="border-radius:5px;"
+        ></v-select>
+ 
              <body class="body">
               Sesi
             </body>
@@ -175,6 +184,7 @@ export default {
     activePicker: null,
     date: null,
     menu: false,
+    items:['Rumah Sakit Bakti', 'Rumah Sakit Cipto Mangunkusumo'],
   }),
    watch: {
     menu(val) {

@@ -55,12 +55,12 @@
         "
       >
         <v-card-title style="background-color: #1789bc; border-radius: 15px"
-          >Rs.Cipto Mangunkusumo</v-card-title
+          >RS. Bakti Timah</v-card-title
         ><br />
-        <v-card-actions>Lokasi</v-card-actions>
-        <v-card-actions>Sesi Vaksin</v-card-actions>
-        <v-card-actions>Jenis Vaksin</v-card-actions>
-        <v-card-actions>Stok Vaksin</v-card-actions>
+        <v-card-actions>Jl.Merdeka no 45</v-card-actions>
+        <v-card-actions>Sesi I (08.00-10.00 WIB)</v-card-actions>
+        <v-card-actions>Jenis Vaksin Sinovac</v-card-actions>
+        <v-card-actions>Stok Vaksin 1000 buah</v-card-actions>
       </v-card>
     </v-container>
   </v-app>
