@@ -30,8 +30,37 @@
         @page-count="pageCount = $event"
       >
         <template v-slot:[`item.vaksin`]="{ item }">
-          <v-btn :color="getColor(item.vaksin)" fab small dark>
-            {{ item.vaksin }}
+          <v-btn
+            fab
+            x-small
+            class="error mx-1"
+            v-bind:class="{ primary: isActive }"
+            @click="(e) => changeColor(e)"
+          >
+            1
+            {{ item.Sp }}
+          </v-btn>
+
+          <v-btn
+            fab
+            x-small
+            class="error mx-1"
+            v-bind:class="{ primary: isActive }"
+            @click="(e) => changeColor(e)"
+          >
+            2
+            {{ item.Sp }}
+          </v-btn>
+
+          <v-btn
+            fab
+            x-small
+            class="error mx-1"
+            v-bind:class="{ primary: isActive }"
+            @click="(e) => changeColor(e)"
+          >
+            3
+            {{ item.Sp }}
           </v-btn>
         </template>
       </v-data-table>
@@ -54,10 +83,30 @@
 export default {
   name: "KeluarComponents",
   methods: {
-    getColor(vaksin) {
-      if (vaksin > 1) return "red";
-      else if (vaksin > 2) return "orange";
-      else return "green";
+    changeColor: function (e) {
+      let target = e.target;
+      if (target.classList.contains("success")) {
+        target.classList.remove("success");
+        target.classList.add("error");
+        /*
+        https://www.topcoder.com/thrive/articles/fetch-api-javascript-how-to-make-get-and-post-requests
+        
+        fetch('http://tujuan.backend', {
+          method:'post,
+          body: JSON.stringify({
+            id:??
+            status:??
+          })
+        })
+        .catch(error => console.error('Error:', error))
+        */
+      } else {
+        target.classList.add("success");
+        target.classList.remove("error");
+      }
+    },
+    myFilter: function () {
+      this.isActive = !this.isActive;
     },
   },
   data() {
@@ -74,7 +123,7 @@ export default {
         { text: "Alamat Domisili", value: "alamat", width: 200 },
         { text: "No Hp", value: "hp" },
         { text: "Email", value: "email" },
-        { text: "Vaksin ke", value: "vaksin", width: 150 },
+        { text: "Vaksin ke", value: "vaksin", width: 200 },
         { text: "Jenis Vaksin", value: "jenis", width: 150 },
         { text: "Sesi Vaksin", value: "sesi", width: 150 },
         { text: "Tanggal Vaksin", value: "tanggal", width: 150 },
