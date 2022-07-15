@@ -6,6 +6,7 @@ import sessions from "@/views/PembuatanVaksin/vaksinasiSession.vue";
 import addSessions from "@/views/PembuatanVaksin/createVaksinasiSession.vue";
 import preview from "@/views/previewSesiVaksin.vue";
 
+
 import layout from "@/layouts/indexLay.vue";
 
 import SyaratPenggunaan from "@/views/syarat-penggunaan.vue";

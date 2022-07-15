@@ -1,6 +1,7 @@
 <template>
   <v-app id="app">
     <div @click="() => pushTo()">
+
       <v-toolbar color="#B2EBF2" height="80">
         <v-btn rounded color="info" height="60">
           <v-avatar size="50" color="#FFFFFF" class="ml-n2 mr-2">
@@ -42,6 +43,7 @@
               elevation="5"
               flat
               to="data-pendaftaran-vaksinasi"
+
             >
               <v-card-title>Data Pendaftaran Vaksinasi</v-card-title>
               <v-card-text>pendataan registrasi vaksin</v-card-text>
@@ -85,6 +87,7 @@
             >
               <v-card-title>Media dan Artikel</v-card-title>
               <v-card-text>Tambah berita seputar kesehatan </v-card-text>
+
             </v-card>
           </v-flex>
         </v-layout>
@@ -113,11 +116,13 @@ export default {
       ],
     };
   },
+
   methods: {
     pushTo() {
       return this.$router.push("/profile-menu");
     },
   },
+
 };
 </script>
 

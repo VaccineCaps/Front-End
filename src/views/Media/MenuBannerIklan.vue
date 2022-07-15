@@ -1,59 +1,69 @@
 <template>
-    <v-main class="main">
-        <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
+  <v-main class="main">
+    <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
       <h2 class="white--text font-weight-medium">Menu Banner Iklan</h2>
     </v-app-bar>
-    
-    <v-card class="rounded-xl ma-10 pa-10" color="#F1FDFF" elevation="3" height="850">
 
-        <v-layout row wrap justify-space-around>
-            <v-flex xs12 md12 lg5>
-                <v-card flat color="transparent">
-                    <v-title class="text-center"><h1>PREVIEW</h1></v-title>
-                    <v-img :src="url" height="300" contain class="grey "></v-img>
-                </v-card>
-            </v-flex>
+    <v-card class="rounded-xl pa-10 ma-10">
 
-            <v-flex xs12 md12 lg5>
-                <v-card flat color="transparent">
-                    <h1>
-                        <br>
-                    </h1>
-                    <v-file-input 
-                    height="300"
-                    v-model="image" 
-                    accept=".png, .jpeg, .jpg" :rules="imagesize"
-                    hint="File extentions (.png, .jpg, .jpeg) File Size limits (max: 10mb)"
-                    placeholder ="Upload profile image"
-                    prepend-icon=""
-                    outlined
-                    filled
-                    @click: clear="url=''"
-                    @change="Preview_image">
-                </v-file-input>
-                </v-card>
-                
-            </v-flex>
-        </v-layout>
-        </v-card>
-        
-    </v-main>
+      <v-col xs="12" md="6">
+        <h2>Upload Banner</h2>
+          <v-file-input
+            v-model="image"
+            accept=".png, .jpeg, .jpg"
+            hint="File extentions (.png, .jpg, .jpeg) File Size limits (max: 10mb)"
+            placeholder="Upload profile image ( format jpg ukuran 1280 x 252 )"
+            prepend-icon=""
+            outlined
+            filled
+            @click:
+            clear="url=''"
+            @change="Preview_image"
+          >
+          </v-file-input>
+      </v-col>
+
+      <v-col>
+        <h2>Preview</h2>
+          <v-img
+            :src="url"
+            height="500"
+            contain
+            class="rounded grey"
+          ></v-img>
+      </v-col>
+
+      <v-layout justify-center class="mt-10">
+        <v-btn depressed color="primary" x-large class="mr-3" @click="() => goTo()">Kembali</v-btn>
+        <v-btn outlined depressed color="primary" x-large @click="submit">Save</v-btn>
+      </v-layout>
+
+    </v-card>
+  </v-main>
 </template>
 
 <script>
 export default {
-    data() {
-        return{
-            url: ''
-        }
+  data() {
+    return {
+      url: "",
+    };
+  },
+
+  methods: {
+    goTo() {
+      return this.$router.push("/crud-mediaartikel");
     },
 
-    methods: {
-        Preview_image() {
-            this.url = URL.createObjectURL(this.image);
-        },
-    }
-}
+    Preview_image() {
+      this.url = URL.createObjectURL(this.image);
+    },
+
+    submit() {
+      console.log(this.image)
+    },
+  },
+};
 </script>
 
 
