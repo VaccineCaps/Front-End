@@ -3,7 +3,7 @@
     <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
       <h2 class="white--text font-weight-medium">Stok Vaksin</h2>
     </v-app-bar>
-    <v-container fluid>
+    <v-container fluid class="px-10">
       <div id="putus">
         <v-toolbar color="transparent" elevation="0" @click="() => goTo()">
           <v-btn color="transparent" text icon width="100%" height="100%">

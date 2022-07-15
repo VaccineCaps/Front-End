@@ -3,7 +3,7 @@
     <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
       <h2 class="white--text font-weight-medium">Pembuatan Sesi Vaksin</h2>
     </v-app-bar>
-    <v-container style="margin-top: 20px">
+    <v-container style="margin-top: 20px" class="px-10">
       <!-- Tambah Sesi Baru -->
       <div id="putus">
         <v-toolbar color="transparent" elevation="0" @click="() => gas()">

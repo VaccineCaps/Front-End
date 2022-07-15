@@ -21,6 +21,7 @@ import MenuBannerIklan from "@/views/Media/MenuBannerIklan.vue";
 
 import MediaArtikel from "@/views/Media/media-dan-berita.vue";
 import DataRegis from "@/views/DataPendaftaran/DataRegistrasi.vue";
+import Profile from "@/views/profile-menu.vue";
 
 Vue.use(VueRouter);
 
@@ -71,6 +72,11 @@ const routes = [
         path: "menu-banner-iklan",
         name: "/MenuBannerIklan",
         component: MenuBannerIklan,
+      },
+      {
+        path: "profile-menu",
+        name: "/profile-menu",
+        component: Profile,
       },  
       
     ],
@@ -96,11 +102,7 @@ const routes = [
         name: "SyaratPenggunaan",
         component: SyaratPenggunaan,
       },
-      {
-        path: "profile-menu",
-        name: "MenuProfile",
-        component: () => import("@/views/profile-menu"),
-      },
+      
     
      
 

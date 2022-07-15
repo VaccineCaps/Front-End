@@ -3,7 +3,7 @@
  <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
       <h2 class="white--text font-weight-medium">Data Registrasi Vaksinasi</h2>
     </v-app-bar>
-    <v-container>
+    <v-container class="px-10">
       <v-row class="justify-space-between">
         <v-col cols="6">
           <div class="d-flex my-2">

@@ -4,10 +4,10 @@
     <v-col cols="2">
       <SideBar/>
     </v-col>
-    <v-col cols="10" style="margin-top: 0px; margin-left: 0px;">
-        <v-container>
+    <v-col cols="10" class="" style="margin-top: 0px; margin-left: px;">
+        <!-- <v-container> -->
             <router-view></router-view>
-        </v-container>
+        <!-- </v-container> -->
         
     </v-col>
     </v-row>

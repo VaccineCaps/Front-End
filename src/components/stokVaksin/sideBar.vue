@@ -20,7 +20,7 @@
       <v-list-item-title><h1 style="color:#1789BC;">I-Vaksin</h1></v-list-item-title>
       </v-list-item>
       <br/>
-       <v-list-item two-line>
+       <v-list-item two-line @click="()=>profil()">
         <v-list-item-avatar style="margin-left:90px;">
             <img src="../../assets/logo.png">
         </v-list-item-avatar>
@@ -62,6 +62,8 @@
         <v-list-item
           v-for="gmbr in gmbrs"
           :key="gmbr.title"
+          link
+          :to="gmbr.path"
           
         >
           <v-list-item-icon>
@@ -95,9 +97,14 @@ export default {
           { title: 'Media & Artikel', icon: 'mdi-newspaper', path:'/media-dan-artikel' },
         ],
         gmbrs:[
-          {title: 'Log-out', icon: 'mdi-logout'},
+          {title: 'Log-out', icon: 'mdi-logout', path: '/login'},
         ],
       }
     },
+    methods:{
+      profil(){
+        return this.$router.push("/profile-menu");
+      },
+    }
 }
 </script>
