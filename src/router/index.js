@@ -46,6 +46,7 @@ const routes = [
         component: laporanBaru,
       },
       {
+        name:"",
         path: "registrasi-vaksin-keluar",
         component: VaksinKeluar,
       },

@@ -13,7 +13,7 @@
       
       <template v-slot:prepend>
         <v-cols cols="12" class="text-center">
-          <v-list-item style="background-color:white; border-radius:5px; margin-top:0px; width: 200px; text-align:" class="mx-5">
+          <v-list-item style="background-color:white; border-radius:5px; margin-top:0 px; width: 200px; text-align:" class="mx-5">
         <v-list-item-icon>
           <img src="../../assets/Loading PC.png" style="width:40px; background-position: center;">
       </v-list-item-icon>
