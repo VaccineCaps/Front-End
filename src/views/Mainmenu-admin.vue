@@ -48,7 +48,7 @@
             </v-card>
           </v-flex>
           <v-flex xs12 md6 lg6>
-            <v-card
+            <v-card @click="()=> toGoTo()"
               color="#B2EBF2"
               class="ma-5 rounded-xl"
               elevation="5"
@@ -60,14 +60,14 @@
             </v-card>
           </v-flex>
           <v-flex xs12 md6 lg6>
-            <v-card
+            <v-card @click="()=> toGo()"
               color="#B2EBF2"
               class="ma-5 rounded-xl"
               elevation="5"
               flat
               to="/sessions"
             >
-              <v-card-title>Pembuatan Sesi Vaksinasi</v-card-title>
+              <v-card-title >Pembuatan Sesi Vaksinasi</v-card-title>
               <v-card-text
                 >Pembuatan jadwal vaksinasi mulai dari sesi, tempat, dan
                 lokasi</v-card-text
@@ -117,6 +117,9 @@ export default {
     pushTo() {
       return this.$router.push("/profile-menu");
     },
+    toGo(){
+      return this.$router.push("/admin/sessions");
+    }
   },
 };
 </script>

@@ -1,34 +1,69 @@
 <template>
-  <v-card class="main" elevation="0">
-    <v-card>
-      <v-simple-table class="">
-        <template v-slot:default>
-          <thead>
-            <tr class="header">
-              <th class="text-left">No.</th>
-              <th class="text-left">Nama Lengkap</th>
-              <th class="text-left">NIK</th>
-              <th class="text-left">Tempat Lahir</th>
-              <th class="text-left">Tanggal Lahir</th>
-              <th class="text-left">Alamat Domisili</th>
-              <th class="text-left">No. Hp</th>
-              <th class="text-left">E-mail</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in desserts" :key="item.number">
-              <td>{{ item.number }}</td>
-              <td>{{ item.number }}</td>
-              <td>{{ item.number }}</td>
-              <td>{{ item.number }}</td>
-              <td>{{ item.number }}</td>
-              <td>{{ item.number }}</td>
-              <td>{{ item.number }}</td>
-              <td>{{ item.number }}</td>
-            </tr>
-          </tbody>
+  <v-main>
+    <div class="d-flex justify-space-between">
+      <v-row>
+        <v-col cols="4">
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            dense
+            placeholder=" Masukkan hal yang ingin dicari"
+            outlined
+            color="primary"
+            x-small
+          >
+          </v-text-field>
+        </v-col>
+      </v-row>
+    </div>
+
+    <v-card outlined color="primary" elevation="1">
+      <v-data-table
+        calculate-widths
+        :headers="headers"
+        headers-length="1000"
+        :items="desserts"
+        :search="search"
+        :page.sync="page"
+        :items-per-page="itemsPerPage"
+        hide-default-footer
+        @page-count="pageCount = $event"
+      >
+        <template v-slot:[`item.status`]="{ item }">
+          <v-btn
+            fab
+            x-small
+            class="error mx-1"
+            v-bind:class="{ primary: isActive }"
+            @click="(e) => changeColor(e)"
+          >
+            1
+            {{ item.Sp }}
+          </v-btn>
+
+          <v-btn
+            fab
+            x-small
+            class="error mx-1"
+            v-bind:class="{ primary: isActive }"
+            @click="(e) => changeColor(e)"
+          >
+            2
+            {{ item.Sp }}
+          </v-btn>
+
+          <v-btn
+            fab
+            x-small
+            class="error mx-1"
+            v-bind:class="{ primary: isActive }"
+            @click="(e) => changeColor(e)"
+          >
+            3
+            {{ item.Sp }}
+          </v-btn>
         </template>
-      </v-simple-table>
+      </v-data-table>
     </v-card>
     <br />
     <template>
@@ -41,57 +76,186 @@
         </v-col>
       </v-row>
     </template>
-  </v-card>
+  </v-main>
 </template>
 
 <script>
 export default {
-  name: "DataVaksinasi",
+  name: "KeluarComponents",
+  methods: {
+    changeColor: function (e) {
+      let target = e.target;
+      if (target.classList.contains("success")) {
+        target.classList.remove("success");
+        target.classList.add("error");
+        /*
+        https://www.topcoder.com/thrive/articles/fetch-api-javascript-how-to-make-get-and-post-requests
+        
+        fetch('http://tujuan.backend', {
+          method:'post,
+          body: JSON.stringify({
+            id:??
+            status:??
+          })
+        })
+        .catch(error => console.error('Error:', error))
+        */
+      } else {
+        target.classList.add("success");
+        target.classList.remove("error");
+      }
+    },
+    myFilter: function () {
+      this.isActive = !this.isActive;
+    },
+  },
   data() {
     return {
+      pageCount: 0,
+      itemsPerPage: 5,
       page: 1,
+      search: "",
+      headers: [
+        { text: "Nama Lengkap", value: "nama", width: 200 },
+        { text: "NIK", value: "nik" },
+        { text: "Tempat Lahir", value: "tmpt", width: 200 },
+        { text: "Tanggal Lahir", value: "tgl", width: 200 },
+        { text: "Alamat Domisili", value: "alamat", width: 200 },
+        { text: "No Hp", value: "hp" },
+        { text: "Email", value: "email" },
+        { text: "Vaksin ke", value: "vaksin", width: 200 },
+        { text: "Jenis Vaksin", value: "jenis", width: 150 },
+        { text: "Sesi Vaksin", value: "sesi", width: 150 },
+        { text: "Tanggal Vaksin", value: "tanggal", width: 150 },
+        { text: "Kota", value: "tempat", width: 150 },
+        { text: "Lokasi Vaksin", value: "lokasi", width: 150 },
+        { text: "No Antrian", value: "antrian", width: 150 },
+        { text: "Status Vaksin", value: "status", width: 150 },
+      ],
+
       desserts: [
         {
-          number: "1",
+          nama: "RS. Bakti Timah",
+          nik: "1971052106012106010002",
+          tmpt: "Pangkalpinang",
+          tgl: "21 Juni 2001",
+          alamat: "Kota Pangkalpinang",
+          hp: "081279979676",
+          email: "dzkri.ardfi@gmail.com",
+          vaksin: 1,
+          jenis: "Pfizer",
+          sesi: 1,
+          tanggal: "31 Juni 2022",
+          tempat: "Jakarta",
+          lokasi: "Rumah Sakit Brimob",
+          antrian: "778-852",
+          status: [1, 2],
         },
         {
-          number: "2",
+          nama: "RS. Umum",
+          nik: "1971052106012106010002",
+          tmpt: "Pangkalpinang",
+          tgl: "21 Juni 2001",
+          alamat: "Kota Pangkalpinang",
+          hp: "081279979676",
+          email: "dzkri.ardfi@gmail.com",
+          vaksin: 3,
+          jenis: "Pfizer",
+          sesi: 1,
+          tanggal: "31 Juni 2022",
+          tempat: "Jakarta",
+          lokasi: "Rumah Sakit Brimob",
+          antrian: "778-852",
+          status: [1, 2],
         },
         {
-          number: "3",
+          nama: "RS. Bakti Timah",
+          nik: "1971052106012106010002",
+          tmpt: "Pangkalpinang",
+          tgl: "21 Juni 2001",
+          alamat: "Kota Pangkalpinang",
+          hp: "081279979676",
+          email: "dzkri.ardfi@gmail.com",
+          vaksin: 3,
+          jenis: "Pfizer",
+          sesi: 1,
+          tanggal: "31 Juni 2022",
+          tempat: "Jakarta",
+          lokasi: "Rumah Sakit Brimob",
+          antrian: "778-852",
+          status: [1, 2],
         },
         {
-          number: "4",
+          nama: "RS. Umum",
+          nik: "1971052106012106010002",
+          tmpt: "Pangkalpinang",
+          tgl: "21 Juni 2001",
+          alamat: "Kota Pangkalpinang",
+          hp: "081279979676",
+          email: "dzkri.ardfi@gmail.com",
+          vaksin: 3,
+          jenis: "Pfizer",
+          sesi: 1,
+          tanggal: "31 Juni 2022",
+          tempat: "Jakarta",
+          lokasi: "Rumah Sakit Brimob",
+          antrian: "778-852",
+          status: [1, 2],
         },
         {
-          number: "5",
+          nama: "RS. Umum",
+          nik: "1971052106012106010002",
+          tmpt: "Pangkalpinang",
+          tgl: "21 Juni 2001",
+          alamat: "Kota Pangkalpinang",
+          hp: "081279979676",
+          email: "dzkri.ardfi@gmail.com",
+          vaksin: 3,
+          jenis: "Pfizer",
+          sesi: 1,
+          tanggal: "31 Juni 2022",
+          tempat: "Jakarta",
+          lokasi: "Rumah Sakit Brimob",
+          antrian: "778-852",
+          status: [1, 2],
         },
         {
-          number: "6",
+          nama: "RS. Umum",
+          nik: "1971052106012106010002",
+          tmpt: "Pangkalpinang",
+          tgl: "21 Juni 2001",
+          alamat: "Kota Pangkalpinang",
+          hp: "081279979676",
+          email: "dzkri.ardfi@gmail.com",
+          vaksin: 3,
+          jenis: "Pfizer",
+          sesi: 1,
+          tanggal: "31 Juni 2022",
+          tempat: "Jakarta",
+          lokasi: "Rumah Sakit Brimob",
+          antrian: "778-852",
+          status: [1, 2],
         },
         {
-          number: "7",
-        },
-        {
-          number: "8",
-        },
-        {
-          number: "9",
-        },
-        {
-          number: "10",
+          nama: "RS. Umum",
+          nik: "1971052106012106010002",
+          tmpt: "Pangkalpinang",
+          tgl: "21 Juni 2001",
+          alamat: "Kota Pangkalpinang",
+          hp: "081279979676",
+          email: "dzkri.ardfi@gmail.com",
+          vaksin: 3,
+          jenis: "Pfizer",
+          sesi: 1,
+          tanggal: "31 Juni 2022",
+          tempat: "Jakarta",
+          lokasi: "Rumah Sakit Brimob",
+          antrian: "778-852",
+          status: [1, 2],
         },
       ],
     };
   },
 };
 </script>
-
-<style>
-.pagination {
-  background: rgb(119, 213, 253);
-}
-.header {
-  background: rgba(23, 137, 188, 1);
-}
-</style>
+<style></style>

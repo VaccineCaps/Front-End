@@ -22,9 +22,6 @@
                 ></v-text-field>
                 <div class="d-flex justify-end">
                   <div></div>
-                  <v-btn text color="transparent">
-                    <h5 class="text-end black--text">Lupa Password?</h5>
-                  </v-btn>
                 </div>
 
                 <v-btn
@@ -34,12 +31,13 @@
                   outlined
                   color="primary"
                   block
-                  @click="overlay = !overlay"
+                  @click="()=>Go()"
+                  
                 >
                   Login
                 </v-btn>
 
-                <v-overlay :value="overlay" :opacity="opacity">
+                <!-- <v-overlay :value="overlay" :opacity="opacity">
                   <v-container fluid>
                     <v-row>
                       <v-col cols="auto">
@@ -71,7 +69,7 @@
                       </v-col>
                     </v-row>
                   </v-container>
-                </v-overlay>
+                </v-overlay> -->
               </v-col>
             </v-row>
           </v-card>
@@ -167,19 +165,24 @@ export default {
     return {
       show1: false,
       password: "",
-      dialog: true,
+      dialog: false,
       zIndex: 0,
       opacity: 0.5,
-      overlay: false,
+      // overlay: false,
     };
   },
   watch: {
-    overlay(val) {
-      val &&
-        setTimeout(() => {
-          this.overlay = false;
-          return this.$router.push("/main-menu");
-        }, 3000);
+    // overlay(val) {
+    //   val &&
+    //     setTimeout(() => {
+    //       this.overlay = false;
+    //       return this.$router.push("/");
+    //     }, 0);
+    // },
+  },
+  methods:{
+    Go(){
+      return this.$router.push("/")
     },
   },
 };

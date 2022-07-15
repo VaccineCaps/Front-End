@@ -1,16 +1,9 @@
 <template>
   <v-app style="background: linear-gradient(#ffffff, #cdf0ff)">
-    <h1
-      style="
-        background-color: #e4f7ff;
-        height: 50px;
-        border-radius: 15px;
-        padding-left: 20px;
-      "
-    >
-      Pembuatan Sesi Vaksinasi
-    </h1>
-    <v-container style="margin-top: 20px">
+    <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
+      <h2 class="white--text font-weight-medium">Pembuatan Sesi Vaksin</h2>
+    </v-app-bar>
+    <v-container style="margin-top: 20px" class="px-10">
       <!-- Tambah Sesi Baru -->
       <div id="putus">
         <v-toolbar color="transparent" elevation="0" @click="() => gas()">
@@ -30,12 +23,7 @@
 
       <v-row class="justify-space-between" style="height: 120px">
         <v-col cols="6">
-          <div class="d-flex my-2">
-            <p class="my-2 mx-2">Filter</p>
-            <v-btn outlined color="primary">
-              Semua <v-icon color="black" size="15"> mdi-chevron-down </v-icon>
-            </v-btn>
-          </div>
+          
         </v-col>
         <v-col cols="5">
           <v-text-field
@@ -60,12 +48,12 @@
         "
       >
         <v-card-title style="background-color: #1789bc; border-radius: 15px"
-          >Rs.Cipto Mangunkusumo</v-card-title
+          >RS. Bakti Timah</v-card-title
         ><br />
-        <v-card-actions>Lokasi</v-card-actions>
-        <v-card-actions>Sesi Vaksin</v-card-actions>
-        <v-card-actions>Jenis Vaksin</v-card-actions>
-        <v-card-actions>Stok Vaksin</v-card-actions>
+        <v-card-actions>Jl.Merdeka no 45</v-card-actions>
+        <v-card-actions>Sesi I (08.00-10.00 WIB)</v-card-actions>
+        <v-card-actions>Jenis Vaksin Sinovac</v-card-actions>
+        <v-card-actions>Stok Vaksin 1000 buah</v-card-actions>
       </v-card>
     </v-container>
   </v-app>
@@ -76,7 +64,7 @@ export default {
   name: "vaksinasiSessionPage",
   methods: {
     gas() {
-      return this.$router.push("/sessions/addsessions");
+      return this.$router.push("/addsessions");
     },
   },
 };
