@@ -10,6 +10,7 @@
 
       <v-card outlined color="primary" elevation="1" class="mt-5">
         <v-data-table
+          height="350px"
           calculate-widths
           :headers="headersIklan"
           :items="dessertsIklan"
@@ -32,7 +33,7 @@
       </v-card>
 
       <div id="putus" class="mt-5">
-        <v-toolbar color="transparent" elevation="0" @click="() => goTo()">
+        <v-toolbar color="transparent" elevation="0" @click="() => goToBanner()">
           <v-btn color="transparent" text icon width="100%" height="100%">
             <v-icon large color="black">mdi-plus-circle-outline</v-icon>
             <h2 class="fontss font-weight-medium mx-3">Banner Iklan Baru</h2>
@@ -44,6 +45,7 @@
       <h2 class="mt-10">Artikel Berita</h2>
       <v-card outlined color="primary" elevation="1" class="mt-5">
         <v-data-table
+          height="200px"
           calculate-widths
           :headers="headersBerita"
           :items="dessertsBerita"
@@ -62,7 +64,7 @@
       </v-card>
 
       <div id="putus" class="mt-5">
-        <v-toolbar color="transparent" elevation="0" @click="() => goTo()">
+        <v-toolbar color="transparent" elevation="0" @click="() => goToArtikel()">
           <v-btn color="transparent" text icon width="100%" height="100%">
             <v-icon large color="black">mdi-plus-circle-outline</v-icon>
             <h2 class="fontss font-weight-medium mx-3">Artikel Baru</h2>
@@ -75,10 +77,19 @@
 
 <script>
 export default {
+
+  methods : {
+    goToBanner() {
+      return this.$router.push("/menubanner-iklan");
+    },
+    goToArtikel() {
+      return this.$router.push("/menuberita-artikel");
+    }
+  },
+
   data() {
     return {
       pageCount: 0,
-      itemsPerPage: 5,
       page: 1,
       search: "",
       headersIklan: [
@@ -109,6 +120,10 @@ export default {
           no: "3",
           keterangan: "Iklan 3",
         },
+        {
+          no: "4",
+          keterangan: "Iklan 4",
+        },
       ],
 
       dessertsBerita: [
@@ -120,6 +135,18 @@ export default {
         },
         {
           no: "2",
+          judul: "Tentang vaksin Sinovac",
+          keterangan:
+            "Vaksin Sinovac adlaah vaksin untuk mencgah infeksi virus SARS-Cov-2 atau COVID-19. Vaksin Sinovac dikenal juga dengan nama CoronaVacine...",
+        },
+        {
+          no: "3",
+          judul: "Tentang vaksin Sinovac",
+          keterangan:
+            "Lorem Ipsum",
+        },
+        {
+          no: "4",
           judul: "Tentang vaksin Sinovac",
           keterangan:
             "Vaksin Sinovac adlaah vaksin untuk mencgah infeksi virus SARS-Cov-2 atau COVID-19. Vaksin Sinovac dikenal juga dengan nama CoronaVacine...",

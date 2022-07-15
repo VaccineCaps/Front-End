@@ -7,6 +7,10 @@ import MenuBannerIklan from "@/views/MenuBannerIklan.vue";
 import MenuBeritaArtikel from "@/views/MenuBeritaArtikel.vue";
 import CrudMediaArtikel from "@/views/CrudMediaArtikel.vue";
 
+import data from "@/views/data.vue";
+import Masuk from "@/views/Masuk.vue";
+import Keluar from "@/views/Keluar.vue";
+
 
 import Vue from "vue";
 
@@ -42,6 +46,21 @@ const routes = [
         path: "/crud-mediaartikel",
         name: "/CrudMediaArtikel",
         component :  CrudMediaArtikel
+    },
+    {
+        path: "/data-aja",
+        name: "/data",
+        component :  data
+    },
+    {
+        path: "/masuk-aja",
+        name: "/masuk",
+        component :  Masuk
+    },
+    {
+        path: "/keluar-aja",
+        name: "/keluar",
+        component :  Keluar
     },
 
 ];

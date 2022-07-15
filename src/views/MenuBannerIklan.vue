@@ -34,7 +34,7 @@
       </v-col>
 
       <v-layout justify-center class="mt-10">
-        <v-btn depressed color="primary" x-large class="mr-3">Kembali</v-btn>
+        <v-btn depressed color="primary" x-large class="mr-3" @click="() => goTo()">Kembali</v-btn>
         <v-btn outlined depressed color="primary" x-large @click="submit">Save</v-btn>
       </v-layout>
 
@@ -51,6 +51,10 @@ export default {
   },
 
   methods: {
+    goTo() {
+      return this.$router.push("/crud-mediaartikel");
+    },
+
     Preview_image() {
       this.url = URL.createObjectURL(this.image);
     },

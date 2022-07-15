@@ -35,7 +35,14 @@
         </v-col>
 
         <v-layout justify-center>
-          <v-btn depressed color="primary" x-large class="mr-3">Kembali</v-btn>
+          <v-btn
+            depressed
+            color="primary"
+            x-large
+            class="mr-3"
+            @click="() => goTo()"
+            >Kembali</v-btn
+          >
 
           <v-btn outlined depressed color="primary" x-large @click="submit"
             >Save</v-btn
@@ -63,6 +70,9 @@ export default {
       console.log(this.judulArtikel, this.isiArtikel);
       this.judulArtikel = "";
       this.isiArtikel = "";
+    },
+    goTo() {
+      return this.$router.push("/crud-mediaartikel");
     },
   },
 };
