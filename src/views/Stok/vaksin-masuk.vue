@@ -3,7 +3,7 @@
     <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
       <h2 class="white--text font-weight-medium">Stok Vaksin</h2>
     </v-app-bar>
-    <v-container fluid>
+    <v-container fluid class="">
       <div class="mx-10">
         <h1 class="font-weight-regular text-center">Registrasi Vaksin Masuk</h1>
         <p class="text-center">
@@ -20,13 +20,14 @@
             <body class="body">
               Nama Mitra
             </body>
-            <v-text-field
-              outlined
-              dense
-              solo
-              label="Masukkan Nama Mitra"
-              class="fields"
-            ></v-text-field>
+           <v-select
+          :items="items"
+          label="Pilih Rumah Sakit"
+          outlined
+          solo
+          dense
+          style="border-radius:10px;"
+        ></v-select>
             <body class="body">
               Nomor Transaksi
             </body>
@@ -183,6 +184,7 @@ export default {
   data() {
     return {
       dialog: false,
+      items:['Rumah Sakit Bakti', 'Rumah Sakit Cipto Mangunkusumo'],
     };
   },
 };

@@ -3,7 +3,7 @@
     <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
       <h2 class="white--text font-weight-medium">Stok Vaksin</h2>
     </v-app-bar>
-    <v-container fluid>
+    <v-container fluid class="px-10">
       <v-app-bar
         id="app-bars"
         height="100"
@@ -53,12 +53,12 @@ export default {
   methods: {
     pushPage() {
       return this.$router.push(
-        "/stok-vaksin/laporan-baru/registrasi-vaksin-keluar"
+        "/registrasi-vaksin-keluar"
       );
     },
     redirect() {
       return this.$router.push(
-        "/stok-vaksin/laporan-baru/registrasi-vaksin-masuk"
+        "/registrasi-vaksin-masuk"
       );
     },
   },

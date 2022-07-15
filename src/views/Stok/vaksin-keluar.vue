@@ -22,13 +22,14 @@
             <body class="body">
               Nama Rumah Sakit
             </body>
-            <v-text-field
-              outlined
-              dense
-              solo
-              label="Masukkan Nama Rumah Sakit"
-              class="fields"
-            ></v-text-field>
+           <v-select
+          :items="items"
+          label="Pilih Rumah Sakit"
+          outlined
+          solo
+          dense
+          style="border-radius:10px;"
+        ></v-select>
             <body class="body">
               Nomor Transaksi
             </body>
@@ -151,6 +152,7 @@ export default {
   data() {
     return {
       dialog: false,
+      items:['Rumah Sakit Bakti', 'Rumah Sakit Cipto Mangunkusumo'],
     };
   },
 };

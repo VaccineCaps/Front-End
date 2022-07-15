@@ -22,36 +22,30 @@
         </v-text-field>
       </v-col>
     </v-row>
+
     <v-card width="auto" outlined color="primary" elevation="1">
-      <v-simple-table :search="search">
-        <template v-slot:default>
-          <thead class="primary">
-            <tr>
-              <th class="text-left">No</th>
-              <th class="text-left">Nama Mitra</th>
-              <th class="text-left">Nomor Transaksi</th>
-              <th class="text-left">Asal Transaksi</th>
-              <th class="text-left">Asal Vaksin</th>
-              <th class="text-left">Tanggal Pengiriman</th>
-              <th class="text-left">Tujuan</th>
-              <th class="text-left">Alamat</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in desserts" :key="item.name">
-              <td>{{ item.no }}</td>
-              <td>{{ item.nama }}</td>
-              <td>{{ item.keterangan }}</td>
-              <td>{{ item.keterangan }}</td>
-              <td>{{ item.keterangan }}</td>
-              <td>{{ item.keterangan }}</td>
-              <td>{{ item.keterangan }}</td>
-              <td>{{ item.keterangan }}</td>
-            </tr>
-          </tbody>
+      <v-data-table
+        :headers="headers"
+        :items="desserts"
+        :search="search"
+        :page.sync="page"
+        :items-per-page="itemsPerPage"
+        hide-default-footer
+        @page-count="pageCount = $event"
+      >
+        <template v-slot:[`item.Sp`]="{ item }">
+          <v-btn
+            class="error"
+            v-bind:class="{ primary: isActive }"
+            @click="(e) => changeColor(e)"
+          >
+            {{ item.Sp }}
+          </v-btn>
         </template>
-      </v-simple-table>
+      </v-data-table>
     </v-card>
+
+
     <br />
     <template>
       <v-row class="justify-end">
@@ -67,32 +61,108 @@
 
 <script>
 export default {
-  name: "MasukComponents",
+  name: "KeluarComponents",
+  methods: {
+    changeColor: function (e) {
+      let target = e.target;
+      if (target.classList.contains("primary")) {
+        target.classList.remove("primary");
+        target.classList.add("error");
+        target.firstChild.innerText = "BELUM";
+        /*
+        https://www.topcoder.com/thrive/articles/fetch-api-javascript-how-to-make-get-and-post-requests
+        
+        fetch('http://tujuan.backend', {
+          method:'post,
+          body: JSON.stringify({
+            id:??
+            status:??
+          })
+        })
+        .catch(error => console.error('Error:', error))
+        */
+      } else {
+        target.classList.add("primary");
+        target.classList.remove("error");
+        target.firstChild.innerText = "SUDAH";
+      }
+    },
+    myFilter: function () {
+      this.isActive = !this.isActive;
+    },
+  },
+
   data() {
     return {
+      pageCount: 0,
+      itemsPerPage: 3,
+      isActive: false,
       page: 1,
       search: "",
+      headers: [
+        {
+          text: "No",
+          value: "no",
+          width: 70,
+        },
+        { text: "Nama Mitra", value: "Nm", width: 200 },
+        { text: "Nomor Transaksi", value: "Nt", width: 200 },
+        { text: "Asal Vaksin", value: "Av", width: 200 },
+        { text: "Tanggal Pengiriman", value: "Tp", width: 200 },
+        { text: "Tujuan", value: "tujuan", width: 200 },
+        { text: "Alamat", value: "alamat", width: 200 },
+        { text: "E-mail", value: "email", width: 200 },
+        { text: "Jenis Vaksin", value: "jv", width: 200 },
+        { text: "Jumlah", value: "jumlah", width: 200 },
+        { text: "Status Penerimaan", value: "Sp", width: 200 },
+      ],
+
       desserts: [
         {
-          nama: "Rumah Sakit",
           no: 1,
+          namaRS: "RS. Bakti Timah",
+          Nt: "PLMAA16157522118",
+          Ad: "Kalbe",
+          Tp: "05/03/2022",
+          email: "Kalbe@gmail.com",
+          jenis: "Sinovak",
+          jumlah: "1000",
+          Sp: "belum",
         },
 
         {
-          nama: "Sesi",
           no: 2,
+          namaRS: "RS. Umum",
+          Nt: "PLMXA12157334118",
+          Ad: "Kalbe",
+          Tp: "05/03/2022",
+          email: "Kalbe@gmail.com",
+          jenis: "Sinovak",
+          jumlah: "1000",
+          Sp: "belum",
         },
         {
-          nama: "Tanggal",
           no: 3,
+          namaRS: "RS. Ir. Soekarno",
+          Nt: "PLMXA12157334118",
+          Ad: "Kalbe",
+          Tp: "05/03/2022",
+          email: "Kalbe@gmail.com",
+          jenis: "Sinovak",
+          jumlah: "1000",
+          Sp: "belum",
         },
         {
-          nama: "Jenis Vaksin",
-          no: 4,
-        },
-        {
-          nama: "Jumlah Vaksin",
+          namaRS: "RS. ke 5",
           no: 5,
+        },
+        {
+          namaRS: "RS. ke 6",
+          no: 6,
+        },
+        {
+          namaRS: "RS. Ir. ke 7",
+          no: 7,
         },
       ],
     };

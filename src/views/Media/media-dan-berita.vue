@@ -3,7 +3,7 @@
     <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
       <h2 class="white--text font-weight-medium">Media dan Artikel</h2>
     </v-app-bar>
-    <v-container fluid>
+    <v-container fluid class="px-10">
       <v-app-bar
         @click="() => redirect()"
         id="app-bars"
@@ -55,7 +55,7 @@ export default {
     //   return this.$router.push("/Menu Berita dan Artikel");
     // },
     redirect() {
-      return this.$router.push("/media-dan-artikel/menu-banner-iklan");
+      return this.$router.push("/menu-banner-iklan");
     },
   },
 };
