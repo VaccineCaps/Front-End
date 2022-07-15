@@ -1,5 +1,5 @@
 <template>
-<v-app style="margin-left:20px;">
+<v-main style="margin-left:20px;">
     <v-row>
     <v-col cols="2">
       <SideBar/>
@@ -11,7 +11,7 @@
         
     </v-col>
     </v-row>
-</v-app>
+</v-main>
 </template>
 
 <script>

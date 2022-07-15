@@ -1,10 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import succes from "@/views/PembuatanVaksin/successAddSesessions.vue";
+
 import sessions from "@/views/PembuatanVaksin/vaksinasiSession.vue";
 import addSessions from "@/views/PembuatanVaksin/createVaksinasiSession.vue";
-import preview from "@/views/previewSesiVaksin.vue";
+
 
 import layout from "@/layouts/indexLay.vue";
 import layout2 from "@/layouts/indexLay2.vue";
@@ -43,66 +43,35 @@ const routes = [
       {
         path: "laporan-baru",
         component: laporanBaru,
-        children: [
-          {
-            path: "",
-            name: "",
-            component: laporanBaru,
-          },
-          {
-            path: "registrasi-vaksin-keluar",
-            component: VaksinKeluar,
-          },
-          {
-            path: "registrasi-vaksin-masuk",
-            component: VaksinMasuk,
-          },
-        ],
+      },
+      {
+        path: "registrasi-vaksin-keluar",
+        component: VaksinKeluar,
+      },
+      {
+        path: "registrasi-vaksin-masuk",
+        component: VaksinMasuk,
       },
       {
         path: "sessions",
         name: "sessions",
         component: sessions,
-        children: [
-          {
-            path: "",
-            name: "",
-            component: sessions,
-          },
-          {
-            path: "addsessions",
-            name: "addsessions",
-            component: addSessions,
-          },
-          {
-            path: "succes",
-            name: "succes",
-            component: succes,
-          },
-
-          {
-            path: "preview",
-            name: "preview",
-            component: preview,
-          },
-        ],
+      },
+      {
+        path: "addsessions",
+        name: "addsessions",
+        component: addSessions,
       },
       {
         path: "media-dan-artikel",
-        component: layout,
-        children: [
-          {
-            path: "",
-            name: "",
-            component: MediaArtikel,
-          },
-          {
-            path: "menu-banner-iklan",
-            name: "/MenuBannerIklan",
-            component: MenuBannerIklan,
-          },
-        ],
+        name:"/media-dan-artikel",
+        component: MediaArtikel,
       },
+      {
+        path: "menu-banner-iklan",
+        name: "/MenuBannerIklan",
+        component: MenuBannerIklan,
+      },  
       
     ],
   },

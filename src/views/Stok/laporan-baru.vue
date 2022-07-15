@@ -53,12 +53,12 @@ export default {
   methods: {
     pushPage() {
       return this.$router.push(
-        "/stok-vaksin/laporan-baru/registrasi-vaksin-keluar"
+        "/registrasi-vaksin-keluar"
       );
     },
     redirect() {
       return this.$router.push(
-        "/stok-vaksin/laporan-baru/registrasi-vaksin-masuk"
+        "/registrasi-vaksin-masuk"
       );
     },
   },

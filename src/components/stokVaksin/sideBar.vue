@@ -95,7 +95,7 @@ export default {
           { title: 'Media & Artikel', icon: 'mdi-newspaper', path:'/media-dan-artikel' },
         ],
         gmbrs:[
-          {title: 'Help', icon: 'mdi-help'},
+          {title: 'Log-out', icon: 'mdi-logout'},
         ],
       }
     },

@@ -1,12 +1,8 @@
 <template>
   <v-main class="main">
-    <v-toolbar
-      class="toolbar rounded-xl"
-      elevation="3"
-      color="light-blue lighten-5"
-    >
-      <h2>Data Registrasi Vaksinasi</h2>
-    </v-toolbar>
+ <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
+      <h2 class="white--text font-weight-medium">Data Registrasi Vaksinasi</h2>
+    </v-app-bar>
     <v-container>
       <v-row class="justify-space-between">
         <v-col cols="6">

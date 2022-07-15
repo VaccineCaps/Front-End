@@ -1,15 +1,8 @@
 <template>
   <v-app style="background: linear-gradient(#ffffff, #cdf0ff)">
-    <h1
-      style="
-        background-color: #e4f7ff;
-        height: 50px;
-        border-radius: 15px;
-        padding-left: 20px;
-      "
-    >
-      Pembuatan Sesi Vaksinasi
-    </h1>
+    <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
+      <h2 class="white--text font-weight-medium">Pembuatan Sesi Vaksin</h2>
+    </v-app-bar>
     <v-container style="margin-top: 20px">
       <!-- Tambah Sesi Baru -->
       <div id="putus">
@@ -71,7 +64,7 @@ export default {
   name: "vaksinasiSessionPage",
   methods: {
     gas() {
-      return this.$router.push("/sessions/addsessions");
+      return this.$router.push("/addsessions");
     },
   },
 };

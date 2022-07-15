@@ -55,7 +55,7 @@ export default {
     //   return this.$router.push("/Menu Berita dan Artikel");
     // },
     redirect() {
-      return this.$router.push("/media-dan-artikel/menu-banner-iklan");
+      return this.$router.push("/menu-banner-iklan");
     },
   },
 };
