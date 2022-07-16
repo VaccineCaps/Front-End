@@ -22,9 +22,7 @@
       <br />
 
       <v-row class="justify-space-between" style="height: 120px">
-        <v-col cols="6">
-          
-        </v-col>
+        <v-col cols="6"> </v-col>
         <v-col cols="5">
           <v-text-field
             class="rounded-xl"
@@ -60,8 +58,16 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "vaksinasiSessionPage",
+  mounted() {
+    const response = axios
+      .get("/session/" + this.selectedRoute)
+      .then((response) => (this.chosenRoute = response.data));
+    console.log("response get", response);
+  },
+
   methods: {
     gas() {
       return this.$router.push("/addsessions");

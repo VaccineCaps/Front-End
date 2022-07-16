@@ -33,7 +33,11 @@
       </v-card>
 
       <div id="putus" class="mt-5">
-        <v-toolbar color="transparent" elevation="0" @click="() => goToBanner()">
+        <v-toolbar
+          color="transparent"
+          elevation="0"
+          @click="() => goToBanner()"
+        >
           <v-btn color="transparent" text icon width="100%" height="100%">
             <v-icon large color="black">mdi-plus-circle-outline</v-icon>
             <h2 class="fontss font-weight-medium mx-3">Banner Iklan Baru</h2>
@@ -64,7 +68,11 @@
       </v-card>
 
       <div id="putus" class="mt-5">
-        <v-toolbar color="transparent" elevation="0" @click="() => goToArtikel()">
+        <v-toolbar
+          color="transparent"
+          elevation="0"
+          @click="() => goToArtikel()"
+        >
           <v-btn color="transparent" text icon width="100%" height="100%">
             <v-icon large color="black">mdi-plus-circle-outline</v-icon>
             <h2 class="fontss font-weight-medium mx-3">Artikel Baru</h2>
@@ -77,14 +85,13 @@
 
 <script>
 export default {
-
-  methods : {
+  methods: {
     goToBanner() {
-      return this.$router.push("/menubanner-iklan");
+      return this.$router.push("/menu-banner-iklan");
     },
     goToArtikel() {
-      return this.$router.push("/menuberita-artikel");
-    }
+      return this.$router.push("/MenuBannerArtikel");
+    },
   },
 
   data() {
@@ -142,8 +149,7 @@ export default {
         {
           no: "3",
           judul: "Tentang vaksin Sinovac",
-          keterangan:
-            "Lorem Ipsum",
+          keterangan: "Lorem Ipsum",
         },
         {
           no: "4",
@@ -156,7 +162,6 @@ export default {
   },
 };
 </script>
-
 
 <style>
 #putus {

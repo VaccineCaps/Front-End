@@ -5,39 +5,40 @@
     </v-app-bar>
 
     <v-card class="rounded-xl pa-10 ma-10">
-
       <v-col xs="12" md="6">
         <h2>Upload Banner</h2>
-          <v-file-input
-            v-model="image"
-            accept=".png, .jpeg, .jpg"
-            hint="File extentions (.png, .jpg, .jpeg) File Size limits (max: 10mb)"
-            placeholder="Upload profile image ( format jpg ukuran 1280 x 252 )"
-            prepend-icon=""
-            outlined
-            filled
-            @click:
-            clear="url=''"
-            @change="Preview_image"
-          >
-          </v-file-input>
+        <v-file-input
+          v-model="image"
+          accept=".png, .jpeg, .jpg"
+          hint="File extentions (.png, .jpg, .jpeg) File Size limits (max: 10mb)"
+          placeholder="Upload profile image ( format jpg ukuran 1280 x 252 )"
+          prepend-icon=""
+          outlined
+          filled
+          clear="url=''"
+          @change="Preview_image"
+        >
+        </v-file-input>
       </v-col>
 
       <v-col>
         <h2>Preview</h2>
-          <v-img
-            :src="url"
-            height="500"
-            contain
-            class="rounded grey"
-          ></v-img>
+        <v-img :src="url" height="500" contain class="rounded grey"></v-img>
       </v-col>
 
       <v-layout justify-center class="mt-10">
-        <v-btn depressed color="primary" x-large class="mr-3" @click="() => goTo()">Kembali</v-btn>
-        <v-btn outlined depressed color="primary" x-large @click="submit">Save</v-btn>
+        <v-btn
+          depressed
+          color="primary"
+          x-large
+          class="mr-3"
+          @click="() => goTo()"
+          >Kembali</v-btn
+        >
+        <v-btn outlined depressed color="primary" x-large @click="submit"
+          >Save</v-btn
+        >
       </v-layout>
-
     </v-card>
   </v-main>
 </template>
@@ -52,7 +53,7 @@ export default {
 
   methods: {
     goTo() {
-      return this.$router.push("/crud-mediaartikel");
+      return this.$router.push("/media-dan-artikel");
     },
 
     Preview_image() {
@@ -60,13 +61,11 @@ export default {
     },
 
     submit() {
-      console.log(this.image)
+      console.log(this.image);
     },
   },
 };
 </script>
-
-
 
 <style>
 #putus {
@@ -86,4 +85,3 @@ export default {
   background-color: rgba(34, 155, 216, 1);
 }
 </style>
-

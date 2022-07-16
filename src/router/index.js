@@ -1,11 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-
 import sessions from "@/views/PembuatanVaksin/vaksinasiSession.vue";
 import addSessions from "@/views/PembuatanVaksin/createVaksinasiSession.vue";
-
-
 
 import layout from "@/layouts/indexLay.vue";
 import layout2 from "@/layouts/indexLay2.vue";
@@ -20,7 +17,8 @@ import VaksinMasuk from "../views/Stok/vaksin-masuk";
 
 import MenuBannerIklan from "@/views/Media/MenuBannerIklan.vue";
 
-import MediaArtikel from "@/views/Media/media-dan-berita.vue";
+import MediaArtikel from "@/views/Media/CrudMediaArtikel.vue";
+import MediaIsiArtikel from "@/views/Media/MenuBeritaArtikel.vue";
 import DataRegis from "@/views/DataPendaftaran/DataRegistrasi.vue";
 import Profile from "@/views/profile-menu.vue";
 
@@ -34,20 +32,20 @@ const routes = [
     children: [
       {
         path: "/",
-        name: "",
+        name: "home",
         component: DataRegis,
       },
       {
         path: "stok-vaksin",
         name: "StokVaksin",
-        component: stokVaksin,       
+        component: stokVaksin,
       },
       {
         path: "laporan-baru",
         component: laporanBaru,
       },
       {
-        name:"",
+        name: "",
         path: "registrasi-vaksin-keluar",
         component: VaksinKeluar,
       },
@@ -67,7 +65,7 @@ const routes = [
       },
       {
         path: "media-dan-artikel",
-        name:"/media-dan-artikel",
+        name: "/media-dan-artikel",
         component: MediaArtikel,
       },
       {
@@ -76,14 +74,18 @@ const routes = [
         component: MenuBannerIklan,
       },
       {
+        path: "MenuBannerArtikel",
+        name: "/MenuBannerArtikel",
+        component: MediaIsiArtikel,
+      },
+      {
         path: "profile-menu",
         name: "/profile-menu",
         component: Profile,
-      },  
-      
+      },
     ],
   },
-      
+
   {
     path: "/login",
     name: "AdminLogin",
@@ -104,19 +106,8 @@ const routes = [
         name: "SyaratPenggunaan",
         component: SyaratPenggunaan,
       },
-      
-    
-     
-
-     
     ],
   },
-
-  // RAJA
-
-  // Bang Taris
-
-  // zikri
 ];
 
 const router = new VueRouter({
@@ -124,5 +115,16 @@ const router = new VueRouter({
   base: "/",
   routes,
 });
+
+// router.beforeEach((to, from, next) => {
+//   const token = localStorage.getItem("token", true);
+//   console.log(token);
+//   // Tujuan selain admin login => gaada token => balik lagi ke admin login
+//   if (to.name !== "AdminLogin" && token == null) next({ name: "AdminLogin" });
+
+//   // Tujuan ke login => ada token => balik ke home
+//   if (to.name === "AdminLogin" && token) next({ name: "home" });
+//   else next();
+// });
 
 export default router;

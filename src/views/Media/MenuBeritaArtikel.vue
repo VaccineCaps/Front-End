@@ -72,14 +72,11 @@ export default {
       this.isiArtikel = "";
     },
     goTo() {
-      return this.$router.push("/crud-mediaartikel");
+      return this.$router.push("/media-dan-artikel");
     },
   },
 };
 </script>
-
-
-
 
 <style>
 #putus {
@@ -99,4 +96,3 @@ export default {
   background-color: rgba(34, 155, 216, 1);
 }
 </style>
-

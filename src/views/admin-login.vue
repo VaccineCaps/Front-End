@@ -8,18 +8,26 @@
           <v-card width="500" class="mx-auto my-10 rounded-xl" elevation="10">
             <v-row>
               <v-col cols="10" md="10" class="mx-auto">
-                <v-text-field
-                  class="my-5"
-                  label="Email"
-                  prepend-icon="mdi-gmail"
-                ></v-text-field>
-                <v-text-field
-                  label="Password"
-                  prepend-icon="mdi-lock"
-                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                  :type="show1 ? 'text' : 'password'"
-                  @click:append="show1 = !show1"
-                ></v-text-field>
+                <v-form req v-model="valid" ref="form">
+                  <v-text-field
+                    v-model="login.email"
+                    class="my-5"
+                    label="Email"
+                    prepend-icon="mdi-gmail"
+                    :rules="login.emailRules"
+                    required
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="login.password"
+                    :rules="login.passRules"
+                    required
+                    label="Password"
+                    prepend-icon="mdi-lock"
+                    :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="show1 ? 'text' : 'password'"
+                    @click:append="show1 = !show1"
+                  ></v-text-field>
+                </v-form>
                 <div class="d-flex justify-end">
                   <div></div>
                 </div>
@@ -27,162 +35,64 @@
                 <v-btn
                   class="rounded-lg tombol my-3"
                   elevation="1"
+                  :disabled="!valid"
                   large
                   outlined
                   color="primary"
                   block
-                  @click="()=>Go()"
-                  
+                  :loading="loading"
+                  @click="() => Go()"
                 >
                   Login
                 </v-btn>
-
-                <!-- <v-overlay :value="overlay" :opacity="opacity">
-                  <v-container fluid>
-                    <v-row>
-                      <v-col cols="auto">
-                        <v-card>
-                          <v-img width="1350" src="../assets/overlay.jpg">
-                            <div id="suntik">
-                              <v-img
-                                class="my-5 mx-auto"
-                                width="170"
-                                src="../assets/Loading PC.png"
-                              ></v-img>
-
-                              <v-col cols="3" class="mx-auto">
-                                <v-card
-                                  color="primary"
-                                  class="rounded-pill"
-                                  max-height="25"
-                                >
-                                  <v-progress-linear
-                                    indeterminate
-                                    color="white"
-                                    class="mb-0"
-                                  ></v-progress-linear>
-                                </v-card>
-                              </v-col>
-                            </div>
-                          </v-img>
-                        </v-card>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-overlay> -->
+                <div v-if="error">
+                  <v-alert type="error"> I'm an error alert. </v-alert>
+                </div>
               </v-col>
             </v-row>
           </v-card>
         </v-col>
       </div>
-
-      <!-- Dialog Card -->
-      <v-row>
-        <v-col cols="auto">
-          <v-dialog
-            transition="dialog-top-transition"
-            max-width="450"
-            :value="dialog"
-            persistent
-          >
-            <template>
-              <v-card
-                height="auto"
-                width="450"
-                color="white"
-                class="rounded-xl"
-              >
-                <v-card height="auto" elevation="10" color="white">
-                  <v-card-title class="primary--text">
-                    <h4 class="mx-auto">
-                      Syarat Penggunaan dan Kebijakan Privasi
-                    </h4>
-                  </v-card-title>
-                </v-card>
-                <br />
-                <v-card-subtitle>
-                  <h2 class="primary--text">
-                    I-Vaksin telah mengeluarkan Syarat Penggunaan dan Kebijakan
-                    Privasi
-                  </h2>
-                </v-card-subtitle>
-                <v-card-text class="black--text">
-                  Syarat Penggunaan dan Kebijakan Privasi adalah sebuah
-                  ketentuan yang wajib dikuti dan disetujua oleh Pengguna
-                  I-Vaksin sebelum menggunakan aplikasi I-Vaksin
-                </v-card-text>
-                <v-card-text class="black--text">
-                  Lihat Syarat Penggunaan dan kebijakan Privasi disini:
-                </v-card-text>
-                <v-col cols="10" class="mx-auto">
-                  <v-btn
-                    class="rounded-xl"
-                    color="primary"
-                    block
-                    to="admin/syarat-penggunaan"
-                    >Syarat Pengunaan</v-btn
-                  >
-                  <br />
-                  <v-btn
-                    class="rounded-xl"
-                    color="primary"
-                    block
-                    to="admin/kebijakan-privasi"
-                    >Kebijakan Privasi</v-btn
-                  >
-                </v-col>
-                <br />
-                <v-card-text class="black--text">
-                  Dengan menyatakan "Setuju", maka Anda menerima segala isi
-                  Syarat Penggunaan dan Kebijakan Privasi yang berlaku
-                </v-card-text>
-                <v-col cols="10" class="mx-auto">
-                  <v-btn
-                    x-large
-                    class="button"
-                    color="primary"
-                    block
-                    @click="dialog = false"
-                    >Setuju</v-btn
-                  >
-                  <br />
-                </v-col>
-              </v-card>
-            </template>
-          </v-dialog>
-        </v-col>
-      </v-row>
-      <!-- Picture -->
     </v-container>
   </v-main>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "AdminLogin",
-
   data() {
     return {
+      loading: false,
+      error: null,
       show1: false,
-      password: "",
-      dialog: false,
-      zIndex: 0,
-      opacity: 0.5,
-      // overlay: false,
+      tokens: "",
+      valid: false,
+      login: {
+        email: "",
+        emailRules: [
+          (v) => !!v || "Email is required",
+          (v) => /.+@.+\..+/.test(v) || "Invalid Email",
+        ],
+        password: "",
+        passRules: [(v) => !!v || "Password is required"],
+      },
     };
   },
-  watch: {
-    // overlay(val) {
-    //   val &&
-    //     setTimeout(() => {
-    //       this.overlay = false;
-    //       return this.$router.push("/");
-    //     }, 0);
-    // },
-  },
-  methods:{
-    Go(){
-      return this.$router.push("/")
+
+  methods: {
+    async Go() {
+      this.loading = true;
+      const response = await axios.post("/login", this.login);
+      localStorage.setItem("token", response.data.token, true);
+      console.log(response.status);
+      this.loading = true;
+      if (response.status == 200) {
+        return this.$router.push("/");
+      } else {
+        alert("salah password");
+      }
     },
   },
 };
