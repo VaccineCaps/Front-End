@@ -51,9 +51,9 @@
 export default {
   name: "MediaBerita",
   methods: {
-    // pushPage() {
-    //   return this.$router.push("/Menu Berita dan Artikel");
-    // },
+    pushPage() {
+      return this.$router.push("/Menu Berita dan Artikel");
+    },
     redirect() {
       return this.$router.push("/media-dan-artikel/menu-banner-iklan");
     },

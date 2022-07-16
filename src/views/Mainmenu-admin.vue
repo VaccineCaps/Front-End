@@ -118,6 +118,19 @@ export default {
       return this.$router.push("/profile-menu");
     },
   },
+   created() {
+    this.currentRouteName = this.$route.name;
+    const token = this.$route.params.token;
+    
+    if (token) {
+      this.token = token;
+      alert("Anda mengakses halaman Backend dengan token : " + "\n\n" + token);
+    }
+    else {
+        alert("asdasd")
+    }
+    
+  }
 };
 </script>
 

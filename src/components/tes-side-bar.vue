@@ -1,11 +1,14 @@
 <template>
   <div>
     <router-view></router-view>
-    <!-- <v-navigation-drawer
-    fixed
-    width="auto"
+    <v-navigation-drawer
+    class="navSide"
+    absolute
+    bottom
     v-model="drawer"
     :color="color"
+    
+    
     :right="right"
     :permanent="permanent"
     :src="bg"
@@ -64,7 +67,7 @@
 
             </v-list-item>
         </v-list>
-    </v-navigation-drawer> -->
+    </v-navigation-drawer>
   </div>
 </template>
 
@@ -74,10 +77,10 @@ export default {
         return{
             drawer: true,
             items:[
-                { title: 'Pendaftaran Vaksinasi', icon: 'mdi-clipboard-file-outline', path:'data-pendaftaran-vaksinasi'},
+                { title: 'Data Pendaftaran Vaksinasi', icon: 'mdi-clipboard-file-outline', path:'data-pendaftaran-vaksinasi'},
                 {title: 'Stok Vaksin', icon: 'mdi-basket',path: 'stok-vaksin'},
-                {title: 'Sesi Vaksinasi', icon:'mdi-pencil-box-multiple-outline', path:'sessions'},
-                {title: 'Media & Artikel', icon: 'mdi-folder-multiple-image', path:'media-dan-artikel'}
+                {title: 'Pembuatan Sesi Vaksinasi', icon:'mdi-pencil-box-multiple-outline', path:'sessions'},
+                {title: 'Media dan Artikel', icon: 'mdi-folder-multiple-image', path:'media-dan-artikel'}
             ],
             color: 'primary',
             colors:[
@@ -91,12 +94,20 @@ export default {
             permanent: true,
             
             
-            
         }
     }
 }
 </script>
 
 <style>
+
+    @media screen and (max-width: 600px) {
+  .navSide.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
 
 </style>

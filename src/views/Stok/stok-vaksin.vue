@@ -128,7 +128,7 @@ export default {
 }
 #bar {
   background-color: rgba(34, 155, 216, 1);
-  margin-left: -105px;
+  
 }
 .container{
   margin-left: -50px

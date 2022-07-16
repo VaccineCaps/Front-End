@@ -1,6 +1,9 @@
 <template>
   <v-main class="containers">
     <v-container fluid height="500">
+      <h1>
+        {{ name }}
+      </h1>
       <!-- login -->
       <div class="test">
         <h1 class="my-5 text-center white--text tulisan">Masuk</h1>
@@ -8,38 +11,49 @@
           <v-card width="500" class="mx-auto my-10 rounded-xl" elevation="10">
             <v-row>
               <v-col cols="10" md="10" class="mx-auto">
-                <v-text-field
-                  class="my-5"
-                  label="Email"
-                  prepend-icon="mdi-gmail"
-                ></v-text-field>
-                <v-text-field
-                  label="Password"
-                  prepend-icon="mdi-lock"
-                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                  :type="show1 ? 'text' : 'password'"
-                  @click:append="show1 = !show1"
-                ></v-text-field>
-                <div class="d-flex justify-end">
-                  <div></div>
-                  <v-btn text color="transparent">
-                    <h5 class="text-end black--text">Lupa Password?</h5>
+                <v-form @submit.prevent="submit" req v-model="valid" ref="form">
+                  <v-text-field
+                    v-model="login.email"
+                    required
+                    class="my-5"
+                    label="Email"
+                    prepend-icon="mdi-gmail"
+                    :rules="login.emailRules"
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="login.password"
+                    required
+                    label="Password"
+                    prepend-icon="mdi-lock"
+                    :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="show1 ? 'text' : 'password'"
+                    @click:append="show1 = !show1"
+                  ></v-text-field>
+                  <div class="d-flex justify-end">
+                    <div></div>
+                    <v-btn text color="transparent">
+                      <h5 class="text-end black--text">Lupa Password?</h5>
+                    </v-btn>
+                  </div>
+
+                  <v-btn
+                    class="rounded-lg tombol my-3"
+                    elevation="1"
+                    large
+                    outlined
+                    color="primary"
+                    block
+                    @click="validate"
+                    :disabled="!valid"
+                    type="submit"
+                  >
+                    Login
                   </v-btn>
-                </div>
+                  <div v-if="error">
+                    <v-alert type="error"> I'm an error alert. </v-alert>
+                  </div>
 
-                <v-btn
-                  class="rounded-lg tombol my-3"
-                  elevation="1"
-                  large
-                  outlined
-                  color="primary"
-                  block
-                  @click="overlay = !overlay"
-                >
-                  Login
-                </v-btn>
-
-                <v-overlay :value="overlay" :opacity="opacity">
+                  <!-- <v-overlay :value="overlay" :opacity="opacity">
                   <v-container fluid>
                     <v-row>
                       <v-col cols="auto">
@@ -71,7 +85,8 @@
                       </v-col>
                     </v-row>
                   </v-container>
-                </v-overlay>
+                </v-overlay> -->
+                </v-form>
               </v-col>
             </v-row>
           </v-card>
@@ -160,26 +175,75 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "AdminLogin",
 
   data() {
     return {
+      currentRouteName: "",
+      nameRouter: "",
+      name: [],
+      valid: false,
       show1: false,
+      users: [],
       password: "",
-      dialog: true,
+      error: null,
+      dialog: false,
       zIndex: 0,
       opacity: 0.5,
       overlay: false,
+      login: {
+        email: "",
+        emailRules: [
+          (v) => !!v || "Email is required",
+          (v) => /.+@.+\..+/.test(v) || "Invalid Email",
+        ],
+        password: "",
+      },
     };
   },
-  watch: {
-    overlay(val) {
-      val &&
-        setTimeout(() => {
-          this.overlay = false;
-          return this.$router.push("/main-menu");
-        }, 3000);
+  created() {
+    this.currentRouteName = this.$route.name;
+  },
+  // watch: {
+  //   overlay(val) {
+  //     val &&
+  //       setTimeout(() => {
+  //         this.overlay = false;
+  //         return this.$router.push("/main-menu");
+  //       }, 3000);
+  //   },
+  // },
+
+  methods: {
+    async submit() {
+      const response = await axios.post("/login", this.login);
+      this.name = response.data.token;
+      console.log(response);
+      localStorage.setItem("token", response.data.token, true);
+      const token = response.data.token;
+
+      if (token) {
+        this.$router.push({
+          name: "ApiLogin",
+          params: {
+            token: token,
+          },
+        });
+      }
+      if (token) {
+        this.$router.push({
+          name: "MainmenuAdmin",
+          params: {
+            token: token,
+          },
+        });
+      }
+    },
+    validate() {
+      this.$refs.form.notif();
     },
   },
 };

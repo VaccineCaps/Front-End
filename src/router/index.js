@@ -21,28 +21,30 @@ import MenuBannerIklan from "@/views/Media/MenuBannerIklan.vue";
 
 import MediaArtikel from "@/views/Media/media-dan-berita.vue";
 import DataRegis from "@/views/DataPendaftaran/DataRegistrasi.vue";
-
-
-
-import Test from "@/views/test.vue"
-// import Teslogin from "@/views/tes-login"
-
+// import tesLogin from ("@/views/tes-login"),
+import Test from "@/views/test.vue";
+import testBefor from "@/views/beforeEach.vue";
+import Teslogin from "@/views/tes-login";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/test-login", 
-    component: {
-      default:()=> import("@/views/tes-login"),
-      // sideBar:()=> import("@/components/tes-side-bar.vue")
-    } 
+    path: "/login",
+    component: testBefor,
+    name: "login",
   },
-  
   {
-    path:"/test-api",
+    path: "/test-login",
+    component: Teslogin,
+    name: "Teslogin",
+    // sideBar:()=> import("@/components/tes-side-bar.vue")
+  },
+
+  {
+    path: "/test-api",
     name: "ApiLogin",
-    component: Test,  
+    component: Test,
   },
   {
     path: "/",
@@ -163,8 +165,6 @@ const routes = [
       },
     ],
   },
-
- 
 ];
 
 const router = new VueRouter({
@@ -172,5 +172,15 @@ const router = new VueRouter({
   base: "/admin",
   routes,
 });
+
+// import axios from "axios";
+
+// const token = localStorage.getItem("token");
+// console.log(token);
+// router.beforeEach((to, from, next) => {
+//   if (to.name !== "login" && !token) next({ name: "login" });
+//   if (to.name === "login" && token) next({ name: "ApiLogin" });
+//   else next();
+// });
 
 export default router;
