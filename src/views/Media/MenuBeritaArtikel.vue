@@ -6,11 +6,11 @@
 
     <v-card class="rounded-xl pa-10 ma-10">
       <div>
-        <v-col xs="12" md="6">
+        <v-col xs="12">
           <h2>Judul Artikel</h2>
 
           <v-text-field
-            v-model="judulArtikel"
+            v-model="berita.title"
             outlined
             label="Masukkan Judul Artikel"
             :rules="JudulRules"
@@ -22,8 +22,8 @@
 
         <v-col>
           <h2>Isi Artikel</h2>
-          <v-textarea
-            v-model="isiArtikel"
+          <v-text-field
+            v-model="berita.context"
             outlined
             name="input-7-4"
             label="Ketik Berita Disini"
@@ -31,7 +31,7 @@
             height="500"
             counter
             maxlength="3000"
-          ></v-textarea>
+          ></v-text-field>
         </v-col>
 
         <v-layout justify-center>
@@ -54,22 +54,29 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
-      judulArtikel: "",
-      isiArtikel: "",
+      berita: {
+        title: "",
+        context: "",
+      },
 
       JudulRules: [(v) => v.length <= 49 || "Maksimal 50 Karakter"],
       ArtikelRules: [(v) => v.length <= 2999 || "Maksimal 3000 Karakter"],
     };
   },
-
+  mounted() {
+    console.log("tes", this.berita.title);
+  },
   methods: {
     submit() {
-      console.log(this.judulArtikel, this.isiArtikel);
-      this.judulArtikel = "";
-      this.isiArtikel = "";
+      const response = axios.post("/news", this.berita);
+      console.log(response);
+      alert("Succes");
+      return this.$router.push("/media-dan-artikel");
     },
     goTo() {
       return this.$router.push("/media-dan-artikel");

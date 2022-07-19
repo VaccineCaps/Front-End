@@ -61,11 +61,20 @@
 import axios from "axios";
 export default {
   name: "vaksinasiSessionPage",
-  mounted() {
-    const response = axios
-      .get("/session/" + this.selectedRoute)
-      .then((response) => (this.chosenRoute = response.data));
-    console.log("response get", response);
+  data() {
+    return {
+      id_hospital: [],
+    };
+  },
+  async mounted() {
+    //get id_hospital
+    const response = await axios.get("/hospitals");
+    console.log(response.data.Hospitalss);
+    // const id = response.data.Hospitalss;
+
+    //get sessions sesuai id_hospital
+    // const sessions = await axios.get("/sessions" + id.);
+    // console.log("id sesi", sessions);
   },
 
   methods: {

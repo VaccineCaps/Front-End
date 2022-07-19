@@ -7,9 +7,6 @@ import addSessions from "@/views/PembuatanVaksin/createVaksinasiSession.vue";
 import layout from "@/layouts/indexLay.vue";
 import layout2 from "@/layouts/indexLay2.vue";
 
-import SyaratPenggunaan from "@/views/syarat-penggunaan.vue";
-import KebijakanPrvasi from "@/views/kebijakan-privasi.vue";
-
 import stokVaksin from "@/views/Stok/stok-vaksin";
 import laporanBaru from "../views/Stok/laporan-baru";
 import VaksinKeluar from "../views/Stok/vaksin-keluar";
@@ -22,6 +19,8 @@ import MediaIsiArtikel from "@/views/Media/MenuBeritaArtikel.vue";
 import DataRegis from "@/views/DataPendaftaran/DataRegistrasi.vue";
 import Profile from "@/views/profile-menu.vue";
 
+import tes from "@/views/Media/tesMedia.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -30,6 +29,10 @@ const routes = [
     name: "Dashboard",
     component: layout,
     children: [
+      {
+        path: "/test",
+        component: tes,
+      },
       {
         path: "/",
         name: "home",
@@ -96,35 +99,28 @@ const routes = [
         name: "",
         component: () => import("../views/admin-login.vue"),
       },
-      {
-        path: "kebijakan-privasi",
-        name: "KebijakanPrivasi",
-        component: KebijakanPrvasi,
-      },
-      {
-        path: "syarat-penggunaan",
-        name: "SyaratPenggunaan",
-        component: SyaratPenggunaan,
-      },
     ],
   },
 ];
 
 const router = new VueRouter({
   mode: "history",
-  base: "/login",
+  base: "/",
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   const token = localStorage.getItem("token", true);
-//   console.log(token);
-//   // Tujuan selain admin login => gaada token => balik lagi ke admin login
-//   if (to.name !== "AdminLogin" && token == null) next({ name: "AdminLogin" });
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem("token", true);
+  console.log("this token coy", token);
 
-//   // Tujuan ke login => ada token => balik ke home
-//   if (to.name === "AdminLogin" && token) next({ name: "home" });
-//   else next();
-// });
+  // Tujuan selain admin login => gaada token => balik lagi ke admin login
+  if (to.path !== "/login" && token == null) next({ path: "/login" });
+
+  // Tujuan ke login => ada token => balik ke home
+  if (to.path === "/login" && token) next({ path: "/" });
+  else next();
+  console.log("to", to);
+  console.log("next", next);
+});
 
 export default router;

@@ -137,6 +137,7 @@ export default {
       desserts: [],
     };
   },
+
   async mounted() {
     const response = await axios.get("/others");
 

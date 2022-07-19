@@ -22,18 +22,23 @@
             <body class="body">
               Nama Rumah Sakit
             </body>
-           <v-select
-          :items="items"
-          label="Pilih Rumah Sakit"
-          outlined
-          solo
-          dense
-          style="border-radius:10px;"
-        ></v-select>
+            <v-select
+              @change="onchange"
+              :items="name_hospital"
+              item-value="id"
+              item-text="name"
+              v-model="post_masuk.hospital_id"
+              label="Pilih Rumah Sakit"
+              outlined
+              solo
+              dense
+              style="border-radius: 10px"
+            ></v-select>
             <body class="body">
               Nomor Transaksi
             </body>
             <v-text-field
+              v-model="post_masuk.no_transaction"
               outlined
               dense
               solo
@@ -44,6 +49,7 @@
               Tanggal Pengiriman
             </body>
             <v-text-field
+              v-model="post_masuk.tanggal"
               outlined
               dense
               solo
@@ -54,6 +60,7 @@
               Distributor
             </body>
             <v-text-field
+              v-model="post_masuk.distributor"
               outlined
               dense
               solo
@@ -64,27 +71,34 @@
               Email
             </body>
             <v-text-field
+              v-model="post_masuk.emaildist"
               outlined
               dense
               solo
-              label="Masukkan Email"
+              label="Masukkan Email Distributor"
               class="fields"
             ></v-text-field>
 
             <body class="body">
               Jenis Vaksin
             </body>
-            <v-text-field
+            <v-select
+              :items="name_vaccine"
+              item-value="id"
+              item-text="name"
+              v-model="post_masuk.vaccinehospital_id"
               outlined
               dense
               solo
               label="Masukkan Jenis Vaksin"
               class="fields"
-            ></v-text-field>
+            ></v-select>
             <body class="body">
               Jumlah
             </body>
             <v-text-field
+              v-model.number="post_stok.stok"
+              @click="newMethod"
               outlined
               dense
               solo
@@ -124,7 +138,7 @@
                   <v-divider class="bold"></v-divider>
                   <v-toolbar elevation="0">
                     <v-col cols="6">
-                      <v-btn x-large text block>
+                      <v-btn x-large text block @click="post_data">
                         <h4 class="texts font-weight-light">Ya</h4>
                       </v-btn>
                     </v-col>
@@ -148,12 +162,76 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
+      vaccine_id: "",
       dialog: false,
-      items:['Rumah Sakit Bakti', 'Rumah Sakit Cipto Mangunkusumo'],
+      name_hospital: [],
+      name_vaccine: [],
+      email_hospital: [],
+      post_masuk: {
+        tanggal: "",
+        no_transaction: "",
+        distributor: "",
+        status: false,
+        hospital_id: "",
+        vaccinehospital_id: "",
+        emaildist: "",
+      },
+      post_stok: {
+        stok: null,
+        hospital_id: "",
+        vaccine_id: "",
+      },
+
+      // post_email: {
+      //   email: "",
+      // },
     };
+  },
+
+  async mounted() {
+    const response = await axios.get("/hospitals");
+    this.name_hospital = response.data.Hospitalss;
+    console.log(this.name_hospital);
+
+    const vaccine = await axios.get("/vaccine");
+    this.name_vaccine = vaccine.data.vaccines;
+    console.log("name vaksin", this.name_vaccine);
+  },
+  methods: {
+    async onchange() {
+      const hospitals = await axios.get(
+        "/hospitals/" + this.post_masuk.hospital_id
+      );
+      this.email_hospital = hospitals.data.hospitals;
+      console.log("id spesifik = ", this.email_hospital);
+      this.post_stok.hospital_id = this.email_hospital.id;
+      console.log("cok", this.post_stok.vaccine_id);
+    },
+    async newMethod() {
+      const vaccines = await axios.get(
+        "/vaccine/" + this.post_masuk.vaccinehospital_id
+      );
+      this.post_stok.vaccine_id = vaccines.data.vaccines.id;
+      console.log("vaksin id ", this.post_stok.vaccine_id);
+    },
+    async post_data() {
+      const response = await axios.post("/transactionout", this.post_masuk);
+      console.log(response.status);
+
+      const res = await axios.post("/stok", this.post_stok);
+      console.log(res.status);
+
+      if (response.status && res.status == 201) {
+        this.dialog = false;
+        alert("Succes");
+        (this.post_masuk = ""), (this.post_stok = "");
+      }
+    },
   },
 };
 </script>

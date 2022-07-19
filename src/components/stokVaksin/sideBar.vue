@@ -34,11 +34,11 @@
           <br />
           <v-list-item two-line @click="() => profil()">
             <v-list-item-avatar style="margin-left: 90px">
-              <img src="../../assets/logo.png" />
+              <img :src="user.image" />
             </v-list-item-avatar>
           </v-list-item>
           <v-list-item-content>
-            <v-list-item-title>Dzikri</v-list-item-title>
+            <v-list-item-title> {{ user.Username }} </v-list-item-title>
             <v-list-item-subtitle>Super Admin</v-list-item-subtitle>
           </v-list-item-content>
         </v-cols>
@@ -75,6 +75,7 @@
           :key="gmbr.title"
           link
           :to="gmbr.path"
+          @click="dialog = true"
         >
           <v-list-item-icon>
             <v-icon>{{ gmbr.icon }}</v-icon>
@@ -88,16 +89,53 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+    <v-dialog
+      persistent
+      v-model="dialog"
+      width="650"
+      :value="dialog"
+      class="rounded-xl"
+    >
+      <v-card
+        elevation="0"
+        height="auto"
+        class="text-center flex-column rounded-xl"
+        style="border: solid #1789bc"
+      >
+        <h2 class="apakah texts font-weight-light">
+          Apakah anda yakin untuk logout?
+        </h2>
+        <v-divider class="bold"></v-divider>
+        <v-toolbar elevation="0">
+          <v-col cols="6">
+            <v-btn x-large text block @click="logout">
+              <h4 class="texts font-weight-light">Ya</h4>
+            </v-btn>
+          </v-col>
+          <v-divider vertical class="bold"></v-divider>
+          <v-col cols="6">
+            <v-btn x-large text block @click="dialog = false">
+              <h4 class="texts font-weight-light">Tidak</h4>
+            </v-btn>
+          </v-col>
+        </v-toolbar>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
 <script>
+import axios from "axios";
+import VueJwtDecode from "vue-jwt-decode";
+
 export default {
   name: "sideBar",
   data() {
     return {
       clipped: false,
-      user: {},
+
+      dialog: false,
+      user: [],
       drawer: false,
       fixed: false,
       items: [
@@ -114,17 +152,23 @@ export default {
           path: "/media-dan-artikel",
         },
       ],
-      gmbrs: [{ title: "Log-out", icon: "mdi-logout", path: "/login" }],
+      gmbrs: [{ title: "Log-out", icon: "mdi-logout" }],
     };
   },
-  // mounted() {
-  //   const response = axios.get("/users/4");
-  //   console.log("responnss", response[[PromiseResult]].data);
-  //   this.user = response.data;
-  //   console.log(this.user);
-  // },
+  async mounted() {
+    const token = localStorage.getItem("token");
+    const decodetoken = VueJwtDecode.decode(token);
+    console.log(decodetoken);
+    const response = await axios.get("/users/" + decodetoken.id);
+    this.user = response.data.users;
+    console.log("response token = ", this.user);
+  },
 
   methods: {
+    logout() {
+      localStorage.removeItem("token", true);
+      return this.$router.push("/login");
+    },
     profil() {
       return this.$router.push("/profile-menu");
     },
