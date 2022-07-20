@@ -89,9 +89,9 @@ export default {
 
   async mounted() {
     // get bookings
-    const response = await axios.get("/booking");
-    // this.desserts = response.data.OtherPersons;
-    console.log("others = ", response);
+    const response = await axios.get("/others");
+    this.desserts = response.data.OtherPersons;
+    console.log("others = ", this.desserts);
 
     //get jenis vaksin
     // const response = await axios.get("/booking/" + )
