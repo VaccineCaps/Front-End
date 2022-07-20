@@ -52,9 +52,11 @@
       <!-- dialog -->
       <v-dialog v-model="dialog" persistent max-width="450" max-height="auto">
         <v-card>
-          <v-card-title class="text-h5"> Details Transaksi </v-card-title>
-          <hr />
-          <br />
+          <v-container fluid class="text-center">
+            <v-card-title class="text-h5" color="indigo">
+              Details Transaksi
+            </v-card-title>
+          </v-container>
           <v-card-subtitle
             >Nama Mitra:
             <strong>{{ transaksi.distributor }}</strong></v-card-subtitle

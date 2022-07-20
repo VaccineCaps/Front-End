@@ -13,40 +13,6 @@
         </v-toolbar>
       </div>
       <br />
-      <v-row>
-        <v-col cols="6">
-          <v-card width="auto" outlined color="primary" elevation="1">
-            <v-simple-table>
-              <template v-slot:default>
-                <thead class="primary">
-                  <tr>
-                    <th width="50" class="text-left">No</th>
-                    <th width="200" class="text-left">Nama</th>
-                    <th width="auto" class="text-left">Keterangan</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="item in desserts" :key="item.name">
-                    <td>{{ item.no }}</td>
-                    <td>{{ item.nama }}</td>
-                    <td>{{ item.keterangan }}</td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
-          </v-card>
-        </v-col>
-        <v-col cols="6">
-          <v-img
-            class="mx-auto"
-            width="525"
-            height="300"
-            src="../../assets/picture.png"
-          ></v-img>
-        </v-col>
-      </v-row>
-
-      <br />
       <Masuk />
       <br />
       <h3 class="font-weight-Reguler">Riwayat Vaksin Keluar</h3>

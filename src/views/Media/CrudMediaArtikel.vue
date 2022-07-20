@@ -31,13 +31,7 @@
           </template>
 
           <template v-slot:[`item.id`]="{ item }">
-            <body>
-              Banner Ke- {{ item.id }}
-            </body>
-          </template>
-
-          <template v-slot:[`item.action`]="{ item }">
-            <v-btn class="mr-2" @click="editItem(item)" color="error"
+            <v-btn class="mr-2" @click="editItems(item.id)" color="error"
               >Hapus</v-btn
             >
           </template>
@@ -77,7 +71,7 @@
           </template>
 
           <template v-slot:[`item.id`]="{ item }">
-            <v-btn class="mr-2" @click="editItem(item)" color="error"
+            <v-btn class="mr-2" @click="editItem(item.id)" color="error"
               >Hapus</v-btn
             >
           </template>
@@ -110,8 +104,7 @@ export default {
       search: "",
       headersIklan: [
         { text: "Banner", value: "image", sortable: false },
-        { text: "Keterangan", value: "id", sortable: false },
-        { text: "Action", value: "action", sortable: false },
+        { text: "Action", value: "id", sortable: false },
       ],
 
       headersBerita: [
@@ -123,6 +116,7 @@ export default {
       dessertsIklan: [],
 
       dessertsBerita: [],
+      editedindex: -1,
     };
   },
   async mounted() {
@@ -140,6 +134,20 @@ export default {
     },
     goToArtikel() {
       return this.$router.push("/MenuBannerArtikel");
+    },
+    editItems(id) {
+      const response = axios.delete("/advertise/" + id);
+      this.dessertsIklan.splice(this.editedindex, 1);
+
+      location.reload();
+      console.log(response);
+    },
+    editItem(id) {
+      const response = axios.delete("/news/" + id);
+      this.dessertsBerita.splice(this.editedindex, 1);
+
+      location.reload();
+      console.log(response);
     },
   },
 };

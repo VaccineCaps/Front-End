@@ -79,12 +79,16 @@ export default {
       Sessions: [],
     };
   },
-  async mounted() {},
+  async mounted() {
+    const response = await axios.get("/hospitals/" + this.id_hospital);
+    console.log(response);
+  },
 
   methods: {
     async get_id() {
       const response = await axios.get("/hospitals");
       this.hospital = await response.data.Hospitalss;
+      console.log("apanih", this.hospital);
     },
     async onchange() {
       // get vaccine

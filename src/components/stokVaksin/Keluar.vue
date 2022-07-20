@@ -28,7 +28,13 @@
         @page-count="pageCount = $event"
       >
         <template v-slot:[`item.status`]="{ item }">
-          <v-chip x-small :color="getColor(item.status)" dark>
+          <v-chip
+            v-model="put.status"
+            x-small
+            :color="getColor(item.status)"
+            dark
+            @click="() => save(item.status)"
+          >
             {{ item.status }}
           </v-chip>
         </template>
@@ -47,9 +53,12 @@
     <!-- dialog -->
     <v-dialog v-model="dialog" persistent max-width="450" max-height="auto">
       <v-card>
-        <v-card-title class="text-h5"> Details Transaksi </v-card-title>
-        <hr />
-        <br />
+        <v-container fluid>
+          <v-toolbar class="text-h5 mx-auto" color="indigo">
+            Details Transaksi
+          </v-toolbar>
+        </v-container>
+
         <v-card-subtitle
           >Nama Rumah Sakit:
           <strong>{{ hospital.name }}</strong></v-card-subtitle
@@ -81,11 +90,13 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false">
-            Tidak
+            Kembali
           </v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">
-            Terima
-          </v-btn>
+          <template>
+            <v-btn color="blue darken-1" text @click="dialog = false">
+              Terima
+            </v-btn>
+          </template>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -119,6 +130,9 @@ export default {
 
   data() {
     return {
+      put: {
+        status: null,
+      },
       stok: "",
       vaccine: "",
       hospital: "",
@@ -156,6 +170,10 @@ export default {
       if (status == false) return "red";
       else return "green";
     },
+    save(status) {
+      status == true;
+    },
+
     async goTo(id) {
       this.dialog = true;
       const resp_transaksi = await axios.get("/transactionout/" + id);
@@ -176,7 +194,11 @@ export default {
       //get stok by id transaksi
       const resp_stok = await axios.get("/stok/" + this.transaksi.hospital_id);
       this.stok = resp_stok.data.stoks[0];
+      const response = await axios.put("/transactionout/" + id, this.put);
+      console.log(response);
     },
+
+    //put methods
   },
 };
 </script>
