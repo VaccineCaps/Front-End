@@ -10,7 +10,7 @@
             placeholder=" Masukkan hal yang ingin dicari"
             outlined
             color="primary"
-            x-small
+            style="margin-top: 10px"
           >
           </v-text-field>
         </v-col>
@@ -29,40 +29,11 @@
         hide-default-footer
         @page-count="pageCount = $event"
       >
-        <template v-slot:[`item.status`]="{ item }">
-          <v-btn
-            fab
-            x-small
-            class="error mx-1"
-            v-bind:class="{ primary: isActive }"
-            @click="(e) => changeColor(e)"
-          >
-            1
-            {{ item.Sp }}
-          </v-btn>
-
-          <v-btn
-            fab
-            x-small
-            class="error mx-1"
-            v-bind:class="{ primary: isActive }"
-            @click="(e) => changeColor(e)"
-          >
-            2
-            {{ item.Sp }}
-          </v-btn>
-
-          <v-btn
-            fab
-            x-small
-            class="error mx-1"
-            v-bind:class="{ primary: isActive }"
-            @click="(e) => changeColor(e)"
-          >
-            3
-            {{ item.Sp }}
-          </v-btn>
-        </template>
+        <!-- <template v-slot:[`item.vaccinestatus`]="{ item }">
+          <v-chip small :color="getColor(item.vaccinestatus)" dark>
+            {{ item.vaccinestatus }}
+          </v-chip>
+        </template> -->
       </v-data-table>
     </v-card>
     <br />
@@ -84,33 +55,12 @@ import axios from "axios";
 
 export default {
   name: "KeluarComponents",
-  methods: {
-    changeColor: function (e) {
-      let target = e.target;
-      if (target.classList.contains("success")) {
-        target.classList.remove("success");
-        target.classList.add("error");
-        /*
-        https://www.topcoder.com/thrive/articles/fetch-api-javascript-how-to-make-get-and-post-requests
-
-        fetch('http://tujuan.backend', {
-          method:'post,
-          body: JSON.stringify({
-            id:??
-            status:??
-          })
-        })
-        .catch(error => console.error('Error:', error))
-        */
-      } else {
-        target.classList.add("success");
-        target.classList.remove("error");
-      }
-    },
-    myFilter: function () {
-      this.isActive = !this.isActive;
-    },
-  },
+  // methods: {
+  //   getColor(vaccinestatus) {
+  //     if (vaccinestatus == 0) return "red";
+  //     else return "green";
+  //   },
+  // },
   data() {
     return {
       pageCount: 0,
@@ -125,13 +75,12 @@ export default {
         { text: "Alamat Domisili", value: "address", width: 200 },
         { text: "No Hp", value: "phonenumber" },
         { text: "Email", value: "email" },
-        { text: "Vaksin ke", value: "vaksin", width: 150 },
+        { text: "Vaksin ke", value: "vaccinestatus", width: 150 },
         { text: "Jenis Vaksin", value: "jenis", width: 150 },
-        { text: "Sesi Vaksin", value: "sesi", width: 150 },
-        { text: "Tanggal Vaksin", value: "tanggal", width: 200 },
+        { text: "Tanggal Vaksin", value: "sesi", width: 150 },
         { text: "Lokasi Vaksin", value: "lokasi", width: 200 },
         { text: "No Antrian", value: "antrian", width: 150 },
-        { text: "Status Vaksin", value: "vaccinestatus", width: 200 },
+        { text: "Status Vaksinasi", value: "", width: 200 },
       ],
 
       desserts: [],
@@ -139,10 +88,13 @@ export default {
   },
 
   async mounted() {
-    const response = await axios.get("/others");
+    // get bookings
+    const response = await axios.get("/booking");
+    // this.desserts = response.data.OtherPersons;
+    console.log("others = ", response);
 
-    this.desserts = response.data.OtherPersons;
-    console.log(this.desserts);
+    //get jenis vaksin
+    // const response = await axios.get("/booking/" + )
   },
 };
 </script>

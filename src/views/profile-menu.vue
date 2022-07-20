@@ -134,6 +134,5 @@ export default {
 }
 #bar {
   background-color: rgba(34, 155, 216, 1);
-  margin-bottom: 10px;
 }
 </style>

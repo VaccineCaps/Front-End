@@ -20,19 +20,23 @@ import DataRegis from "@/views/DataPendaftaran/DataRegistrasi.vue";
 import Profile from "@/views/profile-menu.vue";
 
 import tes from "@/views/Media/tesMedia.vue";
-
+import lagi from "@/views/Media/test-lagi.vue";
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/test",
+    component: tes,
+  },
+  {
+    path: "/test-lagi",
+    component: lagi,
+  },
   {
     path: "",
     name: "Dashboard",
     component: layout,
     children: [
-      {
-        path: "/test",
-        component: tes,
-      },
       {
         path: "/",
         name: "home",

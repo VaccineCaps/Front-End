@@ -159,7 +159,16 @@ export default {
     const token = localStorage.getItem("token");
     const decodetoken = VueJwtDecode.decode(token);
     console.log(decodetoken);
-    const response = await axios.get("/users/" + decodetoken.id);
+    const response = await axios
+      .get("/users/" + decodetoken.id)
+      .catch((error) => {
+        if (error.response.data.debug_message == "Token is expired") {
+          alert("Sesi kamu telah selesai, silahkan login ulang");
+          localStorage.removeItem("token");
+          location.reload();
+        }
+      });
+
     this.user = response.data.users;
     console.log("response token = ", this.user);
   },

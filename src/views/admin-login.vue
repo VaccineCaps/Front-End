@@ -87,11 +87,10 @@ export default {
       const response = await axios.post("/login", this.login);
       localStorage.setItem("token", response.data.token);
       console.log(response.status);
+
       this.loading = true;
       if (response.status == 200) {
         return this.$router.push("/");
-      } else {
-        alert("salah password");
       }
     },
   },

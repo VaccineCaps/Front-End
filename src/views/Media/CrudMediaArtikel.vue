@@ -11,6 +11,7 @@
       <v-card outlined color="primary" elevation="1" class="mt-5">
         <v-data-table
           height="350px"
+          fixed-header
           calculate-widths
           :headers="headersIklan"
           :items="dessertsIklan"
@@ -20,8 +21,19 @@
           hide-default-footer
           @page-count="pageCount = $event"
         >
-          <template v-slot:[`item.banner`]="{ item }">
-            <v-img :src="item.banner" height="100px"></v-img>
+          <template v-slot:[`item.image`]="{ item }">
+            <v-img
+              :src="item.image"
+              max-height="100px"
+              width="500"
+              class="my-5"
+            ></v-img>
+          </template>
+
+          <template v-slot:[`item.id`]="{ item }">
+            <body>
+              Banner Ke- {{ item.id }}
+            </body>
           </template>
 
           <template v-slot:[`item.action`]="{ item }">
@@ -49,7 +61,8 @@
       <h2 class="mt-10">Artikel Berita</h2>
       <v-card outlined color="primary" elevation="1" class="mt-5">
         <v-data-table
-          height="200px"
+          height="350px"
+          fixed-header
           calculate-widths
           :headers="headersBerita"
           :items="dessertsBerita"
@@ -59,7 +72,11 @@
           hide-default-footer
           @page-count="pageCount = $event"
         >
-          <template v-slot:[`item.action`]="{ item }">
+          <template v-slot:[`item.context`]="{ item }">
+            <span class="truncate"> {{ item.context }} </span>
+          </template>
+
+          <template v-slot:[`item.id`]="{ item }">
             <v-btn class="mr-2" @click="editItem(item)" color="error"
               >Hapus</v-btn
             >
@@ -84,7 +101,39 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
+  data() {
+    return {
+      pageCount: 0,
+      page: 1,
+      search: "",
+      headersIklan: [
+        { text: "Banner", value: "image", sortable: false },
+        { text: "Keterangan", value: "id", sortable: false },
+        { text: "Action", value: "action", sortable: false },
+      ],
+
+      headersBerita: [
+        { text: "Judul", value: "title" },
+        { text: "Keterangan", value: "context" },
+        { text: "Action", value: "id", sortable: false },
+      ],
+
+      dessertsIklan: [],
+
+      dessertsBerita: [],
+    };
+  },
+  async mounted() {
+    const result = await axios.get("/advertise");
+    this.dessertsIklan = result.data.Advertise;
+
+    // get artikel
+    const response = await axios.get("/news");
+    this.dessertsBerita = response.data.News;
+    console.log(response);
+  },
   methods: {
     goToBanner() {
       return this.$router.push("/menu-banner-iklan");
@@ -93,77 +142,16 @@ export default {
       return this.$router.push("/MenuBannerArtikel");
     },
   },
-
-  data() {
-    return {
-      pageCount: 0,
-      page: 1,
-      search: "",
-      headersIklan: [
-        { text: "No", value: "no", width: 100 },
-        { text: "Banner", value: "banner", sortable: false },
-        { text: "Keterangan", value: "keterangan", width: 750 },
-        { text: "Action", value: "action", sortable: false },
-      ],
-
-      headersBerita: [
-        { text: "No", value: "no", width: 100 },
-        { text: "Judul", value: "judul" },
-        { text: "Keterangan", value: "keterangan", width: 750 },
-        { text: "Action", value: "action", sortable: false },
-      ],
-
-      dessertsIklan: [
-        {
-          no: "1",
-          keterangan: "Iklan 1",
-          banner: "../assets/Frame.png",
-        },
-        {
-          no: "2",
-          keterangan: "Iklan 2",
-        },
-        {
-          no: "3",
-          keterangan: "Iklan 3",
-        },
-        {
-          no: "4",
-          keterangan: "Iklan 4",
-        },
-      ],
-
-      dessertsBerita: [
-        {
-          no: "1",
-          judul: "Bagaimana cara kerja vaksin?",
-          keterangan:
-            "begitu tubuh memproduksi antibodi dalam respons utamanya terhadap suatu antigen, tubuh juga...",
-        },
-        {
-          no: "2",
-          judul: "Tentang vaksin Sinovac",
-          keterangan:
-            "Vaksin Sinovac adlaah vaksin untuk mencgah infeksi virus SARS-Cov-2 atau COVID-19. Vaksin Sinovac dikenal juga dengan nama CoronaVacine...",
-        },
-        {
-          no: "3",
-          judul: "Tentang vaksin Sinovac",
-          keterangan: "Lorem Ipsum",
-        },
-        {
-          no: "4",
-          judul: "Tentang vaksin Sinovac",
-          keterangan:
-            "Vaksin Sinovac adlaah vaksin untuk mencgah infeksi virus SARS-Cov-2 atau COVID-19. Vaksin Sinovac dikenal juga dengan nama CoronaVacine...",
-        },
-      ],
-    };
-  },
 };
 </script>
 
 <style>
+.truncate {
+  width: 10px;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 #putus {
   border-style: dashed;
   border-width: 3px;

@@ -1,14 +1,14 @@
 <template>
   <v-app style="background: linear-gradient(#ffffff, #cdf0ff)">
-    <v-app-bar id="bar" class="rounded-b-xl" elevation="3">
+    <v-app-bar id="bar" absolute class="rounded-b-xl" elevation="3">
       <h2 class="white--text font-weight-medium">Pembuatan Sesi Vaksin</h2>
     </v-app-bar>
-    <v-container style="margin-top: 20px" class="px-10">
+    <v-container class="pa-10" style="margin-top: 35px">
       <!-- Tambah Sesi Baru -->
       <div id="putus">
         <v-toolbar color="transparent" elevation="0" @click="() => gas()">
           <v-btn color="transparent" text icon width="100%" height="100%">
-            <v-icon large color="black">mdi-plus-circle-outline</v-icon>
+            <v-icon large color="black"> mdi-plus-circle-outline </v-icon>
             <h2 class="fontss font-weight-medium mx-3">Buat Sesi Baru</h2>
           </v-btn>
         </v-toolbar>
@@ -24,20 +24,29 @@
       <v-row class="justify-space-between" style="height: 120px">
         <v-col cols="6"> </v-col>
         <v-col cols="5">
-          <v-text-field
-            class="rounded-xl"
-            placeholder=" Masukkan hal yang dicari"
-            outlined="primary"
+          <v-select
+            @click="get_id"
+            @change="onchange"
+            :items="hospital"
+            item-text="name"
+            item-value="id"
+            v-model="id_hospital"
+            dense
+            placeholder=" Cari nama rumah sakit"
+            outlined
+            color="primary"
             x-small
           >
-          </v-text-field>
+          </v-select>
         </v-col>
       </v-row>
       <!-- List Sesi Vaksinasi -->
 
       <v-card
-        v-for="n in 3"
-        :key="n"
+        :loading="loading"
+        :disabled="disabled"
+        v-for="s in Sessions"
+        :key="s.id"
         style="
           border: solid #1789bc;
           margin-top: 20px;
@@ -49,7 +58,7 @@
           >RS. Bakti Timah</v-card-title
         ><br />
         <v-card-actions>Jl.Merdeka no 45</v-card-actions>
-        <v-card-actions>Sesi I (08.00-10.00 WIB)</v-card-actions>
+        <v-card-actions>Sesi Pagi, 08:00 - 10:00</v-card-actions>
         <v-card-actions>Jenis Vaksin Sinovac</v-card-actions>
         <v-card-actions>Stok Vaksin 1000 buah</v-card-actions>
       </v-card>
@@ -63,21 +72,44 @@ export default {
   name: "vaksinasiSessionPage",
   data() {
     return {
-      id_hospital: [],
+      disabled: null,
+      aktif: false,
+      hospital: [],
+      id_hospital: "",
+      Sessions: [],
     };
   },
-  async mounted() {
-    //get id_hospital
-    const response = await axios.get("/hospitals");
-    console.log(response.data.Hospitalss);
-    // const id = response.data.Hospitalss;
-
-    //get sessions sesuai id_hospital
-    // const sessions = await axios.get("/sessions" + id.);
-    // console.log("id sesi", sessions);
-  },
+  async mounted() {},
 
   methods: {
+    async get_id() {
+      const response = await axios.get("/hospitals");
+      this.hospital = await response.data.Hospitalss;
+    },
+    async onchange() {
+      // get vaccine
+
+      // get sessions
+      await axios
+        .get("/session/" + this.id_hospital)
+        .then((response_sesi) => {
+          this.Sessions = response_sesi.data.Sessions;
+          console.log("iisii", this.Sessions);
+          if (this.Sessions.status == 200) {
+            this.disabled = false;
+            this.loading = false;
+          }
+        })
+        .catch((error) => {
+          console.log("ini error nya", error.message);
+          if (error.message == "Request failed with status code 404") {
+            alert("Tidak ada sesi di rumah sakit ini");
+            this.id_hospital = "";
+            this.disabled = true;
+          }
+        });
+    },
+
     gas() {
       return this.$router.push("/addsessions");
     },
