@@ -32,7 +32,7 @@
             >
           </v-list-item>
           <br />
-          <v-list-item two-line @click="() => profil()">
+          <v-list-item two-line @click="() => proil()">
             <v-list-item-avatar style="margin-left: 90px">
               <img :src="user.image" />
             </v-list-item-avatar>
@@ -64,8 +64,6 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <br />
-      <br />
       <br />
       <br />
 

@@ -103,7 +103,7 @@
                   Jumlah Vaksin
                 </body>
                 <v-text-field
-                  v-model="postdata.max_session"
+                  v-model.number="postdata.max_session"
                   outlined
                   dense
                   solo
@@ -182,7 +182,8 @@ export default {
       vaccine_id: null,
       sesi: "",
       tanggal: "",
-      max_session: [],
+      max_session: null,
+      number_boking: 0,
     },
   }),
 
@@ -194,8 +195,8 @@ export default {
   },
 
   methods: {
-    post() {
-      const response = axios.post("/session", this.postdata);
+    async post() {
+      const response = await axios.post("/session", this.postdata);
 
       console.log(response);
     },

@@ -24,7 +24,7 @@
       <v-row class="justify-space-between" style="height: 120px">
         <v-col cols="6"> </v-col>
         <v-col cols="5">
-          <v-select
+          <v-autocomplete
             @click="get_id"
             @change="onchange"
             :items="hospital"
@@ -37,7 +37,7 @@
             color="primary"
             x-small
           >
-          </v-select>
+          </v-autocomplete>
         </v-col>
       </v-row>
       <!-- List Sesi Vaksinasi -->
@@ -54,11 +54,12 @@
           padding: 10px;
         "
       >
-        <v-card-title style="background-color: #1789bc; border-radius: 15px"
-          >RS. Bakti Timah</v-card-title
+        <v-card-title style="background-color: #1789bc; border-radius: 15px">{{
+          data_hospital.name
+        }}</v-card-title
         ><br />
-        <v-card-actions>Jl.Merdeka no 45</v-card-actions>
-        <v-card-actions>Sesi Pagi, 08:00 - 10:00</v-card-actions>
+        <v-card-actions>{{ data_hospital.address }}</v-card-actions>
+        <v-card-actions>{{ s.sesi }}</v-card-actions>
         <v-card-actions>Jenis Vaksin Sinovac</v-card-actions>
         <v-card-actions>Stok Vaksin 1000 buah</v-card-actions>
       </v-card>
@@ -72,6 +73,7 @@ export default {
   name: "vaksinasiSessionPage",
   data() {
     return {
+      data_hospital: [],
       disabled: null,
       aktif: false,
       hospital: [],
@@ -91,9 +93,6 @@ export default {
       console.log("apanih", this.hospital);
     },
     async onchange() {
-      // get vaccine
-
-      // get sessions
       await axios
         .get("/session/" + this.id_hospital)
         .then((response_sesi) => {
@@ -109,9 +108,15 @@ export default {
           if (error.message == "Request failed with status code 404") {
             alert("Tidak ada sesi di rumah sakit ini");
             this.id_hospital = "";
-            this.disabled = true;
           }
         });
+      const res_hospital = await axios.get("/hospitals/" + this.id_hospital);
+
+      this.data_hospital = res_hospital.data.hospitals;
+      console.log(this.data_hospital);
+
+      const res = await axios.get("/vaccine/" + this.Sessions.vaccine_id);
+      console.log("apaa", res);
     },
 
     gas() {

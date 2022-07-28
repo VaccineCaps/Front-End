@@ -16,7 +16,12 @@
         </v-text-field>
       </v-col>
     </div>
-
+    <v-alert :value="alert_sukses" shaped outlined type="success">
+      Penerimaan Stok Vaksin Berhasil
+    </v-alert>
+    <v-alert :value="alert_gagal" shaped outlined type="error">
+      Penerimaan Stok Vaksin Gagal
+    </v-alert>
     <v-card width="auto" outlined color="primary" elevation="1">
       <v-data-table
         :headers="headers"
@@ -52,7 +57,7 @@
     </v-card>
     <!-- dialog -->
     <v-dialog v-model="dialog" persistent max-width="450" max-height="auto">
-      <v-card>
+      <v-card class="cards">
         <v-container fluid>
           <v-toolbar class="text-h5 mx-auto" color="indigo">
             Details Transaksi
@@ -93,7 +98,11 @@
             Kembali
           </v-btn>
           <template>
-            <v-btn color="blue darken-1" text @click="dialog = false">
+            <v-btn
+              color="blue darken-1"
+              text
+              @click="() => change(transaksi.id)"
+            >
               Terima
             </v-btn>
           </template>
@@ -130,6 +139,8 @@ export default {
 
   data() {
     return {
+      alert_sukses: false,
+      alert_gagal: false,
       put: {
         status: null,
       },
@@ -197,6 +208,36 @@ export default {
       const response = await axios.put("/transactionout/" + id, this.put);
       console.log(response);
     },
+    change() {
+      axios
+        .put("/transactionout/" + this.id_hospital, {
+          status: true,
+          hospital_id: this.transaksi.hospital_id,
+          emaildist: this.transaksi.emaildist,
+          no_transaction: this.transaksi.no_transaction,
+          id: this.transaksi.id,
+          tanggal: this.transaksi.tanggal,
+          vaccinehospital_id: this.transaksi.vaccinehospital_id,
+          distributor: this.transaksi.distributor,
+        })
+        .then((response_status) => {
+          if (response_status.status == 200) {
+            setTimeout(function () {
+              location.reload();
+            }, 1000);
+            (this.dialog = false), (this.alert_sukses = true);
+          }
+        })
+        .catch((err) => {
+          if (err) {
+            setTimeout(function () {
+              location.reload();
+            }, 1000);
+            this.dialog = false;
+            this.alert_gagal = true;
+          }
+        });
+    },
 
     //put methods
   },
@@ -206,5 +247,8 @@ export default {
 <style>
 button span {
   pointer-events: none;
+}
+.cards {
+  background: linear-gradient(to bottom right, #c5cdff, #ffffff);
 }
 </style>

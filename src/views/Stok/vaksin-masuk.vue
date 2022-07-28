@@ -208,28 +208,33 @@ export default {
     ////////////////////////
     const res_vaksin = await axios.get("/vaccine");
     this.vaksin = res_vaksin.data.vaccines;
-    console.log("name vaksin", this.vaksin);
   },
   methods: {
     async onchange() {
       this.id_vaksin = await this.post.hospital_id;
-      console.log("spesifik id = ", this.id_vaksin);
+
       //////////////////////////////////////////////////////
       const res_emailByid = await axios.get("/hospitals/" + this.id_vaksin);
       this.email = res_emailByid.data.hospitals;
-      console.log("buahah = ", this.email);
     },
     getId() {
       this.post_stok.vaccine_id = this.post.vaccinehospital_id;
-      console.log("spesifik id vaksin", this.post_stok.vaccine_id);
     },
 
     async post_data() {
-      const response = await axios.post("/transactionin", this.post);
-      console.log(response.status);
+      const response = await axios
+        .post("/transactionin", this.post)
+        .catch((err) => {
+          console.log(err);
+        });
+
       ///
-      const resp = await axios.post("/stok", this.post_stok);
-      console.log(resp.status);
+      const resp = await axios.post("/stok", this.post_stok).catch((err) => {
+        console.log(err);
+      });
+      this.dialog = false;
+
+      return response, resp, this.$router.push("/stok-vaksin");
     },
   },
 };

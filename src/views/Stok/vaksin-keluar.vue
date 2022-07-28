@@ -38,7 +38,7 @@
               Nomor Transaksi
             </body>
             <v-text-field
-              v-model="post_masuk.no_transaction"
+              v-model.number="post_masuk.no_transaction"
               outlined
               dense
               solo
@@ -174,7 +174,7 @@ export default {
       email_hospital: [],
       post_masuk: {
         tanggal: "",
-        no_transaction: "",
+        no_transaction: null,
         distributor: "",
         status: false,
         hospital_id: "",
@@ -221,16 +221,11 @@ export default {
     },
     async post_data() {
       const response = await axios.post("/transactionout", this.post_masuk);
-      console.log(response.status);
 
       const res = await axios.post("/stok", this.post_stok);
-      console.log(res.status);
+      this.dialog = false;
 
-      if (response.status && res.status == 201) {
-        this.dialog = false;
-        alert("Succes");
-        (this.post_masuk = ""), (this.post_stok = "");
-      }
+      return response, res, this.$router.push("/stok-vaksin");
     },
   },
 };

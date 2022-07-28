@@ -1,6 +1,12 @@
 <template>
   <v-main>
     <v-container>
+      <v-alert :value="alert_sukses" shaped outlined type="success">
+        Penerimaan Stok Vaksin Berhasil
+      </v-alert>
+      <v-alert :value="alert_gagal" shaped outlined type="error">
+        Penerimaan Stok Vaksin Gagal
+      </v-alert>
       <h3 class="font-weight-Reguler">Riwayat Vaksin Masuk</h3>
       <v-row class="justify-space-between">
         <v-col cols="6"> </v-col>
@@ -51,11 +57,11 @@
       </v-card>
       <!-- dialog -->
       <v-dialog v-model="dialog" persistent max-width="450" max-height="auto">
-        <v-card>
-          <v-container fluid class="text-center">
-            <v-card-title class="text-h5" color="indigo">
+        <v-card class="cards">
+          <v-container fluid>
+            <v-toolbar class="text-h5 mx-auto" color="indigo">
               Details Transaksi
-            </v-card-title>
+            </v-toolbar>
           </v-container>
           <v-card-subtitle
             >Nama Mitra:
@@ -94,7 +100,12 @@
             <v-btn color="blue darken-1" text @click="dialog = false">
               Tidak
             </v-btn>
-            <v-btn color="blue darken-1" text @click="dialog = false">
+            <v-btn
+              color="blue darken-1"
+              text
+              @click="() => change(transaksi.id)"
+              v-model="put.status"
+            >
               Terima
             </v-btn>
           </v-card-actions>
@@ -118,10 +129,19 @@
 
 <script>
 import axios from "axios";
+
 export default {
   name: "KeluarComponents",
+
   data() {
     return {
+      id_hospital: "",
+      alert_sukses: false,
+      alert_gagal: false,
+      statusTransaksi: null,
+      put: {
+        status: null,
+      },
       stok: "",
       vaccine: "",
       hospital: "",
@@ -133,6 +153,7 @@ export default {
       isActive: false,
       page: 1,
       search: "",
+      payload: {},
       headers: [
         { text: "Nama Mitra", value: "distributor", width: 200 },
         { text: "Nomor Transaksi", value: "no_transaction", width: 200 },
@@ -156,7 +177,7 @@ export default {
 
     axios
       .get("/hospital/" + this.desserts.hospital_id)
-      .then((response) => console.log(response));
+      .then((response) => console.log("id hospital asasladh", response));
   },
   methods: {
     getColor(status) {
@@ -167,13 +188,17 @@ export default {
     async goTo(id) {
       this.dialog = true;
       const resp_transaksi = await axios.get("/transactionin/" + id);
+      console.log("asdasdsa", resp_transaksi);
       this.transaksi = await resp_transaksi.data.transactions[0];
+
       console.log("isi tasns= ", this.transaksi);
       //get hospital by id transaksi
       const resp_hospital = await axios.get(
         "/hospitals/" + this.transaksi.hospital_id
       );
+
       this.hospital = resp_hospital.data.hospitals;
+      this.id_hospital = resp_hospital.data.hospitals.id;
       //get vaksin by id transaksi
       const resp_vaccine = await axios.get(
         "/vaccine/" + this.transaksi.vaccinehospital_id
@@ -183,6 +208,50 @@ export default {
       const resp_stok = await axios.get("/stok/" + this.transaksi.hospital_id);
       this.stok = resp_stok.data.stoks[0];
     },
+
+    change() {
+      axios
+        .put("/transactionin/" + this.id_hospital, {
+          status: true,
+          hospital_id: this.transaksi.hospital_id,
+          asalvaccine: this.transaksi.asalvaccine,
+          no_transaction: this.transaksi.no_transaction,
+          id: this.transaksi.id,
+          tanggal: this.transaksi.tanggal,
+          vaccinehospital_id: this.transaksi.vaccinehospital_id,
+          distributor: this.transaksi.distributor,
+        })
+        .then((response_status) => {
+          if (response_status.status == 200) {
+            setTimeout(function () {
+              location.reload();
+            }, 1000);
+            (this.dialog = false), (this.alert_sukses = true);
+          }
+        })
+        .catch((err) => {
+          if (err) {
+            setTimeout(function () {
+              location.reload();
+            }, 1000);
+            this.dialog = false;
+            this.alert_gagal = true;
+          }
+        });
+    },
+    //  change(){
+    //    axios.get("/transactionin/" + this.id_hospital)
+    //    .then((response)=>{
+    //     this.payload = response.data.transactions[0]
+    //    }).catch((err)=>{
+    //     console.log("ini erornya",err)
+    //    })
+
+    // },
+    // async mounted(id){
+    //   const resp = await axios.get("/transactionin/" + id)
+    //   console.log("adasdads", resp)
+    // }
   },
 };
 </script>

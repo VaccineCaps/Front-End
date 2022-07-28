@@ -28,10 +28,10 @@
                     @click:append="show1 = !show1"
                   ></v-text-field>
                 </v-form>
-                <div class="d-flex justify-end">
-                  <div></div>
-                </div>
 
+                <v-alert :value="alert" dense outlined type="error">
+                  Email atau Password Salah
+                </v-alert>
                 <v-btn
                   class="rounded-lg tombol my-3"
                   elevation="1"
@@ -64,6 +64,7 @@ export default {
   name: "AdminLogin",
   data() {
     return {
+      alert: false,
       loading: false,
       error: null,
       show1: false,
@@ -82,16 +83,26 @@ export default {
   },
 
   methods: {
-    async Go() {
+    Go() {
       this.loading = true;
-      const response = await axios.post("/login", this.login);
-      localStorage.setItem("token", response.data.token);
-      console.log(response.status);
+      axios
+        .post("/login", this.login)
+        .then((response) => {
+          localStorage.setItem("token", response.data.token);
 
-      this.loading = true;
-      if (response.status == 200) {
-        return this.$router.push("/");
-      }
+          this.loading = true;
+          if (response.status == 200) {
+            return this.$router.push("/");
+          }
+        })
+        .catch((err) => {
+          console.log(err.response.status);
+          if (err.response.status == 401) {
+            this.loading = false;
+
+            return (this.alert = true);
+          }
+        });
     },
   },
 };
