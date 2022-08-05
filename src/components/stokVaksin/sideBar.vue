@@ -33,7 +33,7 @@
           </v-list-item>
           <br />
           <v-list-item two-line @click="() => proil()">
-            <v-list-item-avatar style="margin-left: 90px">
+            <v-list-item-avatar size="50" class="mx-auto">
               <img :src="user.image" />
             </v-list-item-avatar>
           </v-list-item>
