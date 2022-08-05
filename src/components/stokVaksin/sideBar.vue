@@ -130,8 +130,8 @@ export default {
   name: "sideBar",
   data() {
     return {
-      clipped: false,
-
+      clipped: true,
+      mini: true,
       dialog: false,
       user: [],
       drawer: false,

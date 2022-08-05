@@ -10,6 +10,7 @@
 </template>
 <script>
 import DataVaksin from "../../components/data.vue";
+
 export default {
   name: "DataRegistrasi",
   components: {

@@ -62,6 +62,7 @@ import axios from "axios";
 
 export default {
   name: "AdminLogin",
+
   data() {
     return {
       alert: false,
@@ -109,10 +110,6 @@ export default {
 </script>
 
 <style>
-.overlays {
-  background-image: url(../assets/overlay.jpg);
-  background-size: 100%;
-}
 .containers {
   background-image: url(../assets/LOGIN\ ADMIN\ BARU.png);
   background-size: 100%;
@@ -127,10 +124,7 @@ export default {
   margin-top: 55px;
   margin-bottom: 140px;
 }
-.cards {
-  background-image: url(../assets/overlay.jpg);
-  background-size: 100%;
-}
+
 #suntik {
   margin-top: 250px;
 }

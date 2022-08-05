@@ -43,6 +43,7 @@
       <!-- List Sesi Vaksinasi -->
 
       <v-card
+        id="card"
         :loading="loading"
         :disabled="disabled"
         v-for="s in Sessions"
@@ -101,13 +102,14 @@ export default {
           if (this.Sessions.status == 200) {
             this.disabled = false;
             this.loading = false;
+            document.getElementById("card").style.display = "block";
           }
         })
         .catch((error) => {
           console.log("ini error nya", error.message);
-          if (error.message == "Request failed with status code 404") {
-            alert("Tidak ada sesi di rumah sakit ini");
+          if (error) {
             this.id_hospital = "";
+            document.getElementById("card").style.display = "none";
           }
         });
       const res_hospital = await axios.get("/hospitals/" + this.id_hospital);

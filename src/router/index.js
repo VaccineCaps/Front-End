@@ -17,21 +17,10 @@ import MenuBannerIklan from "@/views/Media/MenuBannerIklan.vue";
 import MediaArtikel from "@/views/Media/CrudMediaArtikel.vue";
 import MediaIsiArtikel from "@/views/Media/MenuBeritaArtikel.vue";
 import DataRegis from "@/views/DataPendaftaran/DataRegistrasi.vue";
-import Profile from "@/views/profile-menu.vue";
 
-import tes from "@/views/Media/tesMedia.vue";
-import lagi from "@/views/Media/test-lagi.vue";
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/test",
-    component: tes,
-  },
-  {
-    path: "/test-lagi",
-    component: lagi,
-  },
   {
     path: "",
     name: "Dashboard",
@@ -84,11 +73,6 @@ const routes = [
         path: "MenuBannerArtikel",
         name: "/MenuBannerArtikel",
         component: MediaIsiArtikel,
-      },
-      {
-        path: "profile-menu",
-        name: "/profile-menu",
-        component: Profile,
       },
     ],
   },

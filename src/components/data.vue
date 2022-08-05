@@ -22,7 +22,7 @@
         calculate-widths
         :headers="headers"
         headers-length="1000"
-        :items="desserts"
+        :items="desserts || detail"
         :search="search"
         :page.sync="page"
         :items-per-page="itemsPerPage"
@@ -76,14 +76,15 @@ export default {
         { text: "No Hp", value: "phonenumber" },
         { text: "Email", value: "email" },
         { text: "Vaksin ke", value: "vaccinestatus", width: 150 },
-        { text: "Jenis Vaksin", value: "jenis", width: 150 },
-        { text: "Tanggal Vaksin", value: "sesi", width: 150 },
-        { text: "Lokasi Vaksin", value: "lokasi", width: 200 },
-        { text: "No Antrian", value: "antrian", width: 150 },
-        { text: "Status Vaksinasi", value: "", width: 200 },
+        { text: "Jenis Vaksin", value: "vaccinenumber", width: 150 },
+        { text: "Tanggal Vaksin", value: "session_id", width: 150 },
+        { text: "Lokasi Vaksin", value: "hospital_id", width: 200 },
+        { text: "No Antrian", value: "bookedcode", width: 150 },
+        { text: "Status Vaksinasi", value: "statusnumber", width: 200 },
       ],
 
       desserts: [],
+      detail: [],
     };
   },
 
@@ -94,7 +95,9 @@ export default {
     console.log("others = ", this.desserts);
 
     //get jenis vaksin
-    // const response = await axios.get("/booking/" + )
+    const res = await axios.get("/booking");
+    this.detail = res.data.Bookings;
+    console.log("detail", this.detail);
   },
 };
 </script>
